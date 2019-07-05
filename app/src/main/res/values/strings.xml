@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">CodeTest</string>
+    <string name="behavior_main_content">com.example.codetest.mainpage.behavior.MainContentBehavior</string>
+    <string name="behavior_main_header">com.example.codetest.mainpage.behavior.MainHeaderBehavior</string>
+    <string name="behavior_main_title">com.example.codetest.mainpage.behavior.MainTitleBehavior</string>
+    <string name="behavior_main_tab">com.example.codetest.mainpage.behavior.MainTabBehavior</string>
+
+    <string name="behavior_xiami_comment">com.example.codetest.xiami.behavior.XiamiCommentBehavior</string>
+    <string name="behavior_xiami_title">com.example.codetest.xiami.behavior.XiamiTitleBehavior</string>
+
+    <string name="behavior_sample_title">com.example.codetest.test1.SampleTitleBehavior</string>
+
+    <string name="behavior_sample_header">com.example.codetest.test2.SampleHeaderBehavior</string>
+    <string name="behavior_recyclerview">com.example.codetest.test2.RecyclerViewBehavior</string>
+
+</resources>
