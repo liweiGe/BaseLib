@@ -1,40 +1,47 @@
 package com.example.niubilityapp;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.niubilityapp.live_TV.LiveUrlActivity;
+import com.example.niubilityapp.fragment.NewsFragment;
+import com.example.niubilityapp.fragment.RvFragment;
 import com.google.android.material.tabs.TabLayout;
+import com.kongzue.baseframework.BaseActivity;
+import com.kongzue.baseframework.interfaces.DarkStatusBarTheme;
+import com.kongzue.baseframework.interfaces.Layout;
+import com.kongzue.baseframework.util.JumpParameter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class MainActivity extends AppCompatActivity {
+@Layout(R.layout.activity_main)
+@DarkStatusBarTheme(true)           //开启顶部状态栏图标、文字暗色模式
+public class MainActivity extends BaseActivity {
     List<Fragment> fragments = new ArrayList<>();
     List<String> titles = new ArrayList<>();
     TabLayout tabLayout;
     ViewPager viewPager;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public void initViews() {
         tabLayout = findViewById(R.id.tl_tabs);
         viewPager = findViewById(R.id.vp_content);
 
-//        fragments.add(MyFragment.newInstance("11111", "11111"));
-//        fragments.add(MyFragment.newInstance("22222", "22222"));
+        fragments.add(RvFragment.newInstance());
+        fragments.add(NewsFragment.newInstance());
 
         titles.add("电视直播列表");
         titles.add("网易新闻");
+    }
 
+    @Override
+    public void initDatas(JumpParameter paramer) {
+
+    }
+
+    @Override
+    public void setEvents() {
         viewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager(),
                 FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
             @Override
@@ -52,20 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 return titles.get(position);
             }
         });
-
-    }
-
-
-    int index = 1;
-
-    public void getJoke(View view) {
-
-//
-
-
-    }
-
-    public void goLive(View view) {
-        startActivity(new Intent(this, LiveUrlActivity.class));
+        tabLayout.setupWithViewPager(viewPager);
     }
 }
