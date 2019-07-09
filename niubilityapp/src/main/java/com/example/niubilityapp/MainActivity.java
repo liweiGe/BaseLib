@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.niubilityapp.fragment.JokeFragment;
 import com.example.niubilityapp.fragment.NewsFragment;
 import com.example.niubilityapp.fragment.RvFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -30,9 +31,11 @@ public class MainActivity extends BaseActivity {
 
         fragments.add(RvFragment.newInstance());
         fragments.add(NewsFragment.newInstance());
+        fragments.add(JokeFragment.newInstance());
 
         titles.add("电视直播列表");
         titles.add("网易新闻");
+        titles.add("段子");
     }
 
     @Override
