@@ -1,5 +1,7 @@
 package com.example.niubilityapp;
 
+import android.app.UiModeManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -37,5 +39,11 @@ public class SplashActivity extends AppCompatActivity {
 
     public void goMain(View view) {
         startActivity(new Intent(this, MainActivity.class));
+    }
+
+    public void changeSkin(View view) {
+        final UiModeManager uiModeManager = (UiModeManager) getSystemService(Context.UI_MODE_SERVICE);
+
+        uiModeManager.setNightMode(UiModeManager.MODE_NIGHT_NO);
     }
 }
