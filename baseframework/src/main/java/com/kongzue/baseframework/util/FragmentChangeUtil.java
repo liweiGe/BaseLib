@@ -3,8 +3,8 @@ package com.kongzue.baseframework.util;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.kongzue.baseframework.BaseActivity;
-import com.kongzue.baseframework.BaseFragment;
+import com.kongzue.baseframework.base.BaseActivity;
+import com.kongzue.baseframework.base.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;

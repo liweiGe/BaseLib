@@ -1,10 +1,20 @@
-package com.kongzue.baseframework.util.swipeback.util;
+package com.kongzue.baseframework.swipeback;
 
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
-import android.view.View;
 
-public class SwipeBackPreferenceActivity extends PreferenceActivity implements SwipeBackActivityBase {
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.kongzue.baseframework.swipeback.util.SwipeBackActivityBase;
+import com.kongzue.baseframework.swipeback.util.SwipeBackActivityHelper;
+import com.kongzue.baseframework.swipeback.util.SwipeBackLayout;
+import com.kongzue.baseframework.swipeback.util.SwipeBackUtil;
+
+/**
+ * Author: @Isaac Wang
+ * Github: https://github.com/ikew0ng/SwipeBackLayout
+ * License: Apache License
+ */
+public class SwipeBackActivity extends AppCompatActivity implements SwipeBackActivityBase {
     private SwipeBackActivityHelper mHelper;
     
     @Override
@@ -21,17 +31,10 @@ public class SwipeBackPreferenceActivity extends PreferenceActivity implements S
     }
     
     @Override
-    public View findViewById(int id) {
-        View v = super.findViewById(id);
-        if (v == null && mHelper != null)
-            return mHelper.findViewById(id);
-        return v;
-    }
-    
-    @Override
     public SwipeBackLayout getSwipeBackLayout() {
         return mHelper.getSwipeBackLayout();
     }
+    
     @Override
     public void setSwipeBackEnable(boolean enable) {
         getSwipeBackLayout().setEnableGesture(enable);
@@ -39,6 +42,7 @@ public class SwipeBackPreferenceActivity extends PreferenceActivity implements S
     
     @Override
     public void scrollToFinishActivity() {
+        SwipeBackUtil.convertActivityToTranslucent(this);
         getSwipeBackLayout().scrollToFinishActivity();
     }
 }

@@ -1,4 +1,4 @@
-package com.kongzue.baseframework.util.swipeback.util;
+package com.kongzue.baseframework.swipeback.util;
 
 /**
  * @author Yrom

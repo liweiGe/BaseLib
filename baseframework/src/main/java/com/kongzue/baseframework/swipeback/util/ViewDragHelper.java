@@ -1,4 +1,4 @@
-package com.kongzue.baseframework.util.swipeback.util;
+package com.kongzue.baseframework.swipeback.util;
 
 import android.content.Context;
 import androidx.core.view.MotionEventCompat;
@@ -473,9 +473,9 @@ public class ViewDragHelper {
     /**
      * Enable edge tracking for the selected edges of the parent view. The
      * callback's
-     * {@link  com.kongzue.baseframework.util.swipeback.util.ViewDragHelper.Callback#onEdgeTouched(int, int)}
+     * {@link  com.kongzue.baseframework.swipeback.util.ViewDragHelper.Callback#onEdgeTouched(int, int)}
      * and
-     * {@link  com.kongzue.baseframework.util.swipeback.util.ViewDragHelper.Callback#onEdgeDragStarted(int, int)}
+     * {@link  com.kongzue.baseframework.swipeback.util.ViewDragHelper.Callback#onEdgeDragStarted(int, int)}
      * methods will only be invoked for edges for which edge tracking has been
      * enabled.
      *
@@ -515,7 +515,7 @@ public class ViewDragHelper {
     /**
      * Capture a specific child view for dragging within the parent. The
      * callback will be notified but
-     * {@link  com.kongzue.baseframework.util.swipeback.util.ViewDragHelper.Callback#tryCaptureView(android.view.View, int)}
+     * {@link  com.kongzue.baseframework.swipeback.util.ViewDragHelper.Callback#tryCaptureView(android.view.View, int)}
      * will not be asked permission to capture this view.
      *
      * @param childView       Child view to capture
@@ -1528,7 +1528,7 @@ public class ViewDragHelper {
     /**
      * Find the topmost child under the given point within the parent view's
      * coordinate system. The child order is determined using
-     * {@link  com.kongzue.baseframework.util.swipeback.util.ViewDragHelper.Callback#getOrderedChildIndex(int)}
+     * {@link  com.kongzue.baseframework.swipeback.util.ViewDragHelper.Callback#getOrderedChildIndex(int)}
      * .
      *
      * @param x X position to test in the parent's coordinate system

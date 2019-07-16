@@ -12,7 +12,7 @@ import com.example.niubilityapp.WebActivity;
 import com.example.niubilityapp.adapter.NewsAdapter;
 import com.example.niubilityapp.http.HttpApi;
 import com.example.niubilityapp.model.JokeBean;
-import com.kongzue.baseframework.BaseFragment;
+import com.kongzue.baseframework.base.BaseFragment;
 import com.kongzue.baseframework.interfaces.Layout;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.callback.SimpleCallBack;

@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 
-import com.kongzue.baseframework.BaseActivity;
+import com.kongzue.baseframework.base.BaseActivity;
 
 import java.util.Arrays;
 import java.util.Collections;

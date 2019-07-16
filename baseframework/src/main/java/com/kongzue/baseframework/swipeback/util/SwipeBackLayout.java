@@ -1,4 +1,4 @@
-package com.kongzue.baseframework.util.swipeback.util;
+package com.kongzue.baseframework.swipeback.util;
 
 import android.app.Activity;
 import android.content.Context;
@@ -193,9 +193,9 @@ public class SwipeBackLayout extends FrameLayout {
     /**
      * Enable edge tracking for the selected edges of the parent view. The
      * callback's
-     * {@link  com.kongzue.baseframework.util.swipeback.util.ViewDragHelper.Callback#onEdgeTouched(int, int)}
+     * {@link  com.kongzue.baseframework.swipeback.util.ViewDragHelper.Callback#onEdgeTouched(int, int)}
      * and
-     * {@link  com.kongzue.baseframework.util.swipeback.util.ViewDragHelper.Callback#onEdgeDragStarted(int, int)}
+     * {@link  com.kongzue.baseframework.swipeback.util.ViewDragHelper.Callback#onEdgeDragStarted(int, int)}
      * methods will only be invoked for edges for which edge tracking has been
      * enabled.
      *

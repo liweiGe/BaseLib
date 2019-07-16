@@ -1,4 +1,4 @@
-package com.kongzue.baseframework.util.toast;
+package com.kongzue.baseframework.toast;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -18,8 +18,8 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import static com.kongzue.baseframework.BaseActivity.isMIUI;
-import static com.kongzue.baseframework.util.toast.Toaster.isAndroidO;
+import static com.kongzue.baseframework.base.BaseActivity.isMIUI;
+import static com.kongzue.baseframework.toast.Toaster.isAndroidO;
 
 public class SystemToast extends BaseToast {
     

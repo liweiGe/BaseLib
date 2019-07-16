@@ -1,4 +1,4 @@
-package com.kongzue.baseframework.util.toast;
+package com.kongzue.baseframework.toast;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,7 +18,7 @@ import com.kongzue.baseframework.R;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.kongzue.baseframework.util.toast.Toaster.DURATION;
+import static com.kongzue.baseframework.toast.Toaster.DURATION;
 
 public class CompatToast extends BaseToast {
     

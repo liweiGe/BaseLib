@@ -1,4 +1,4 @@
-package com.kongzue.baseframework.util.toast;
+package com.kongzue.baseframework.toast;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,7 +6,7 @@ import android.os.Build;
 import androidx.core.app.NotificationManagerCompat;
 import android.widget.Toast;
 
-import static com.kongzue.baseframework.BaseActivity.isMIUI;
+import static com.kongzue.baseframework.base.BaseActivity.isMIUI;
 
 public class Toaster {
     

@@ -9,7 +9,7 @@ import com.example.niubilityapp.R;
 import com.example.niubilityapp.adapter.JokeAdapter;
 import com.example.niubilityapp.http.HttpApi;
 import com.example.niubilityapp.model.DuanziBean;
-import com.kongzue.baseframework.BaseFragment;
+import com.kongzue.baseframework.base.BaseFragment;
 import com.kongzue.baseframework.interfaces.Layout;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.callback.SimpleCallBack;

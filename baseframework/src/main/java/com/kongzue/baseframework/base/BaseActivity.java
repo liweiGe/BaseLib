@@ -1,29 +1,19 @@
-package com.kongzue.baseframework;
+package com.kongzue.baseframework.base;
 
 import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.graphics.Point;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.provider.Settings;
-import android.telephony.TelephonyManager;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Pair;
-import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -32,13 +22,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.ColorRes;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.SharedElementCallback;
-import androidx.core.content.ContextCompat;
 
+import com.kongzue.baseframework.R;
 import com.kongzue.baseframework.interfaces.DarkNavigationBarTheme;
 import com.kongzue.baseframework.interfaces.DarkStatusBarTheme;
 import com.kongzue.baseframework.interfaces.FullScreen;
@@ -47,28 +34,23 @@ import com.kongzue.baseframework.interfaces.Layout;
 import com.kongzue.baseframework.interfaces.LifeCircleListener;
 import com.kongzue.baseframework.interfaces.NavigationBarBackgroundColor;
 import com.kongzue.baseframework.interfaces.SwipeBack;
+import com.kongzue.baseframework.swipeback.util.SwipeBackActivityBase;
+import com.kongzue.baseframework.swipeback.util.SwipeBackActivityHelper;
+import com.kongzue.baseframework.swipeback.util.SwipeBackLayout;
+import com.kongzue.baseframework.swipeback.util.SwipeBackUtil;
+import com.kongzue.baseframework.toast.Toaster;
 import com.kongzue.baseframework.util.AppManager;
-import com.kongzue.baseframework.util.DebugLogG;
-import com.kongzue.baseframework.util.JsonFormat;
 import com.kongzue.baseframework.util.JumpParameter;
 import com.kongzue.baseframework.util.LanguageUtil;
 import com.kongzue.baseframework.util.OnJumpResponseListener;
 import com.kongzue.baseframework.util.OnPermissionResponseListener;
 import com.kongzue.baseframework.util.ParameterCache;
-import com.kongzue.baseframework.util.swipeback.util.SwipeBackActivityBase;
-import com.kongzue.baseframework.util.swipeback.util.SwipeBackActivityHelper;
-import com.kongzue.baseframework.util.swipeback.util.SwipeBackLayout;
-import com.kongzue.baseframework.util.swipeback.util.SwipeBackUtil;
-import com.kongzue.baseframework.util.toast.Toaster;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
@@ -76,9 +58,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
-import static com.kongzue.baseframework.BaseFrameworkSettings.BETA_PLAN;
 import static com.kongzue.baseframework.BaseFrameworkSettings.DEBUGMODE;
-import static com.kongzue.baseframework.BaseFrameworkSettings.setNavigationBarHeightZero;
 
 /**
  * @Version: 6.5.6
@@ -115,9 +95,7 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
     protected void onCreate(Bundle savedInstanceState, int layoutResId) {
         super.onCreate(savedInstanceState);
         this.savedInstanceState = savedInstanceState;
-        
-        logG("\n" + me.getClass().getSimpleName(), "onCreate");
-        info(2, me.getClass().getSimpleName() + ":onCreate");
+
         
         initAttributes();
         
@@ -148,9 +126,6 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
         super.onCreate(savedInstanceState);
         mHelper = new SwipeBackActivityHelper(this);
         this.savedInstanceState = savedInstanceState;
-        
-        logG("\n" + me.getClass().getSimpleName(), "onCreate");
-        info(2, me.getClass().getSimpleName() + ":onCreate");
         
         isAlive = true;
         
@@ -378,7 +353,11 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
             return false;
         }
     }
-    
+
+    public void log(String s) {
+        Log.e("base", "log: "+s);
+    }
+
     public static class BuildProperties {
         
         private final Properties properties;
@@ -471,7 +450,6 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
             runOnMain(new Runnable() {
                 @Override
                 public void run() {
-                    logG("toast", obj.toString());
                     if (toast == null)
                         toast = Toast.makeText(BaseActivity.this, NULL, Toast.LENGTH_SHORT);
                     toast.setText(obj.toString());
@@ -486,66 +464,7 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
     public void toastS(final Object obj) {
         Toaster.build(me).show(obj.toString());
     }
-    
-    //简易Log
-    public void log(final Object obj) {
-        try {
-            if (DEBUGMODE) {
-                String msg = obj.toString();
-                if (isNull(msg)) return;
-                if (obj.toString().length() > 2048) {
-                    bigLog(msg);
-                } else {
-                    logG("log", msg);
-                    if (!JsonFormat.formatJson(msg)) {
-                        Log.v(">>>>>>", msg);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public void error(final Object obj) {
-        try {
-            if (DEBUGMODE) {
-                String msg = obj.toString();
-                if (isNull(msg)) return;
-                if (obj.toString().length() > 2048) {
-                    bigLog(msg);
-                } else {
-                    logG("log", msg);
-                    if (!JsonFormat.formatJson(msg)) {
-                        Log.e(">>>>>>", msg);
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    private void info(int level, String msg) {
-        if (!DEBUGMODE) {
-            return;
-        }
-        switch (level) {
-            case 0:
-                Log.v(">>>", msg);
-                break;
-            case 1:
-                Log.i(">>>", msg);
-                break;
-            case 2:
-                Log.d(">>>", msg);
-                break;
-            case 3:
-                Log.e(">>>", msg);
-                break;
-        }
-    }
-    
+
     //软键盘打开与收起
     public void showIME(boolean show, EditText editText) {
         if (editText == null) {
@@ -567,218 +486,7 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
     public void setIMMStatus(boolean show, EditText editText) {
         showIME(show, editText);
     }
-    
-    public static String StartFindWords = "";
-    
-    //用于进行dip和px转换
-    public int dip2px(float dpValue) {
-        final float scale = getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
-    }
-    
-    //用于进行px和dip转换
-    public int px2dip(float pxValue) {
-        final float scale = getResources().getDisplayMetrics().density;
-        return (int) (pxValue / scale + 0.5f);
-    }
-    
-    
-    //权限相关
-    private final String TAG = "PermissionsUtil";
-    private int REQUEST_CODE_PERMISSION = 0x00099;
-    
-    /**
-     * 请求权限
-     * <p>
-     * 警告：此处除了用户拒绝外，唯一可能出现无法获取权限或失败的情况是在AndroidManifest.xml中未声明权限信息
-     * Android6.0+即便需要动态请求权限（重点）但不代表着不需要在AndroidManifest.xml中进行声明。
-     *
-     * @param permissions                  请求的权限
-     * @param onPermissionResponseListener 回调监听器
-     */
-    public void requestPermission(String[] permissions, OnPermissionResponseListener onPermissionResponseListener) {
-        this.onPermissionResponseListener = onPermissionResponseListener;
-        if (checkPermissions(permissions)) {
-            if (onPermissionResponseListener != null)
-                onPermissionResponseListener.onSuccess(permissions);
-        } else {
-            List<String> needPermissions = getDeniedPermissions(permissions);
-            ActivityCompat.requestPermissions(this, needPermissions.toArray(new String[needPermissions.size()]), REQUEST_CODE_PERMISSION);
-        }
-    }
-    
-    /**
-     * 检测所有的权限是否都已授权
-     *
-     * @param permissions
-     * @return
-     */
-    public boolean checkPermissions(String[] permissions) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-        }
-        
-        for (String permission : permissions) {
-            if (ContextCompat.checkSelfPermission(this, permission) !=
-                    PackageManager.PERMISSION_GRANTED) {
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    //单权限检查
-    public boolean checkPermissions(String permission) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            return true;
-        }
-        if (ContextCompat.checkSelfPermission(this, permission) !=
-                PackageManager.PERMISSION_GRANTED) {
-            return false;
-        }
-        return true;
-    }
-    
-    /**
-     * 获取权限集中需要申请权限的列表
-     *
-     * @param permissions
-     * @return
-     */
-    private List<String> getDeniedPermissions(String[] permissions) {
-        List<String> needRequestPermissionList = new ArrayList<>();
-        for (String permission : permissions) {
-            if (ContextCompat.checkSelfPermission(this, permission) !=
-                    PackageManager.PERMISSION_GRANTED ||
-                    ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
-                needRequestPermissionList.add(permission);
-            }
-        }
-        return needRequestPermissionList;
-    }
-    
-    
-    /**
-     * 系统请求权限回调
-     *
-     * @param requestCode
-     * @param permissions
-     * @param grantResults
-     */
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == REQUEST_CODE_PERMISSION) {
-            if (verifyPermissions(grantResults)) {
-                if (onPermissionResponseListener != null)
-                    onPermissionResponseListener.onSuccess(permissions);
-            } else {
-                if (onPermissionResponseListener != null) onPermissionResponseListener.onFail();
-                showTipsDialog();
-            }
-        }
-    }
-    
-    /**
-     * 确认所有的权限是否都已授权
-     *
-     * @param grantResults
-     * @return
-     */
-    private boolean verifyPermissions(int[] grantResults) {
-        for (int grantResult : grantResults) {
-            if (grantResult != PackageManager.PERMISSION_GRANTED) {
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    /**
-     * 显示提示对话框
-     */
-    private void showTipsDialog() {
-        new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle("警告")
-                .setMessage("需要必要的权限才可以正常使用该功能，您已拒绝获得该权限。\n如果需要重新授权，您可以点击“允许”按钮进入系统设置进行授权")
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                })
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        startAppSettings();
-                    }
-                }).show();
-    }
-    
-    //启动当前应用设置页面
-    public void startAppSettings() {
-        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        intent.setData(Uri.parse("package:" + getPackageName()));
-        startActivity(intent);
-    }
-    
-    //获取状态栏的高度
-    public int getStatusBarHeight() {
-        try {
-            Class<?> c = Class.forName("com.android.internal.R$dimen");
-            Object obj = c.newInstance();
-            Field field = c.getField("status_bar_height");
-            int x = Integer.parseInt(field.get(obj).toString());
-            return getResources().getDimensionPixelSize(x);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
-    
-    //获取屏幕宽度
-    public int getDisplayWidth() {
-        Display disp = getWindowManager().getDefaultDisplay();
-        Point outP = new Point();
-        disp.getSize(outP);
-        return outP.x;
-    }
-    
-    //获取屏幕可用部分高度（屏幕高度-状态栏高度-屏幕底栏高度）
-    public int getDisplayHeight() {
-        Display disp = getWindowManager().getDefaultDisplay();
-        Point outP = new Point();
-        disp.getSize(outP);
-        return outP.y;
-    }
-    
-    //获取底栏高度
-    public int getNavbarHeight() {
-        if (setNavigationBarHeightZero) return 0;
-        int result = 0;
-        int resourceId = 0;
-        int rid = getResources().getIdentifier("config_showNavigationBar", "bool", "android");
-        if (rid != 0) {
-            resourceId = getResources().getIdentifier("navigation_bar_height", "dimen", "android");
-            return getResources().getDimensionPixelSize(resourceId);
-        } else
-            return 0;
-    }
-    
-    //获取真实的屏幕高度，注意判断非0
-    public int getRootHeight() {
-        int diaplayHeight = 0;
-        Display display = getWindowManager().getDefaultDisplay();
-        Point point = new Point();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            display.getRealSize(point);
-            diaplayHeight = point.y;
-        } else {
-            DisplayMetrics dm = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(dm);
-            diaplayHeight = dm.heightPixels; //得到高度```
-        }
-        return diaplayHeight;
-    }
+
     
     //位移动画
     public ObjectAnimator moveAnimation(Object obj, String perference, float aimValue, long time, long delay) {
@@ -803,7 +511,6 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
     //复制文本到剪贴板
     public boolean copy(String s) {
         if (isNull(s)) {
-            log("要复制的文本为空");
             return false;
         }
         ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
@@ -1047,7 +754,6 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
     @Override
     protected void onResume() {
         isActive = true;
-        logG("\n" + me.getClass().getSimpleName(), "onResume");
         if (onResponseListener != null) {
             onResponseListener.OnResponse(ParameterCache.getInstance().getResponse(me.getClass().getName()));
             onResponseListener = null;
@@ -1064,7 +770,6 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
             Toaster.cancel();
         }
         isActive = false;
-        logG("\n" + me.getClass().getSimpleName(), "onPause");
         if (lifeCircleListener != null) lifeCircleListener.onPause();
         if (globalLifeCircleListener != null)
             globalLifeCircleListener.onPause(me, me.getClass().getName());
@@ -1074,8 +779,7 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
     @Override
     protected void onDestroy() {
         isAlive = false;
-        logG("\n" + me.getClass().getSimpleName(), "onDestroy");
-        info(2, me.getClass().getSimpleName() + ":onDestroy");
+
         if (getParameter() != null) getParameter().cleanAll();
         AppManager.getInstance().deleteActivity(me);
         if (lifeCircleListener != null) lifeCircleListener.onDestroy();
@@ -1083,28 +787,7 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
             globalLifeCircleListener.onDestroy(me, me.getClass().getName());
         super.onDestroy();
     }
-    
-    //大型打印使用，Log默认是有字数限制的，如有需要打印更长的文本可以使用此方法
-    public void bigLog(String msg) {
-        Log.i(">>>bigLog", "BIGLOG.start=================================");
-        if (isNull(msg)) return;
-        logG("log", msg);
-        int strLength = msg.length();
-        int start = 0;
-        int end = 2000;
-        for (int i = 0; i < 100; i++) {
-            //剩下的文本还是大于规定长度则继续重复截取并输出
-            if (strLength > end) {
-                Log.v(">>>", msg.substring(start, end));
-                start = end;
-                end = end + 2000;
-            } else {
-                Log.v(">>>", msg.substring(start, strLength));
-                break;
-            }
-        }
-        Log.i(">>>bigLog", "BIGLOG.end=================================");
-    }
+
     
     public static GlobalLifeCircleListener getGlobalLifeCircleListener() {
         return globalLifeCircleListener;
@@ -1118,133 +801,11 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
         return DEBUGMODE;
     }
     
-    private void logG(String tag, Object o) {
-        if (BETA_PLAN) {
-            DebugLogG.LogG(me, tag + ">>>" + o.toString());
-        }
-    }
-    
-    //使用默认浏览器打开链接
-    public boolean openUrl(String url) {
-        try {
-            Uri uri = Uri.parse(url);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
-            return true;
-        } catch (Exception e) {
-            if (DEBUGMODE) e.printStackTrace();
-            return false;
-        }
-    }
-    
-    //打开指定App
-    public boolean openApp(String packageName) {
-        PackageManager packageManager = getPackageManager();
-        if (isInstallApp(packageName)) {
-            try {
-                Intent intent = packageManager.getLaunchIntentForPackage(packageName);
-                startActivity(intent);
-                return true;
-            } catch (Exception e) {
-                if (DEBUGMODE) e.printStackTrace();
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
-    
-    //检测App是否已安装
-    public boolean isInstallApp(String packageName) {
-        PackageInfo packageInfo = null;
-        try {
-            packageInfo = getPackageManager().getPackageInfo(packageName, 0);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return packageInfo != null;
-    }
-    
+
     public Bundle getSavedInstanceState() {
         return savedInstanceState;
     }
-    
-    //获取IMEI (请预先在 AndroidManifest.xml 中声明：<uses-permission android:name="android.permission.READ_PHONE_STATE"/>)
-    @SuppressLint({"WrongConstant", "MissingPermission"})
-    public String getIMEI() {
-        String result = null;
-        try {
-            if (checkPermissions(new String[]{"android.permission.READ_PHONE_STATE"})) {
-                TelephonyManager telephonyManager = (TelephonyManager) getSystemService("phone");
-                if (telephonyManager != null) {
-                    if (Build.VERSION.SDK_INT >= 26) {
-                        try {
-                            Method method = telephonyManager.getClass().getMethod("getImei", new Class[0]);
-                            method.setAccessible(true);
-                            result = (String) method.invoke(telephonyManager, new Object[0]);
-                        } catch (Exception e) {
-                        }
-                        if (isNull(result)) {
-                            result = telephonyManager.getDeviceId();
-                        }
-                    } else {
-                        result = telephonyManager.getDeviceId();
-                    }
-                }
-            } else {
-                requestPermission(new String[]{"android.permission.READ_PHONE_STATE"}, new OnPermissionResponseListener() {
-                    @Override
-                    public void onSuccess(String[] permissions) {
-                        getIMEI();
-                    }
-                    
-                    @Override
-                    public void onFail() {
-                        if (BaseFrameworkSettings.DEBUGMODE)
-                            Log.e(">>>", "getIMEI(): 失败，用户拒绝授权READ_PHONE_STATE");
-                    }
-                });
-            }
-        } catch (Exception e) {
-            if (BaseFrameworkSettings.DEBUGMODE) {
-                e.printStackTrace();
-            }
-        }
-        return result;
-    }
-    
-    public String getAndroidId() {
-        String androidID = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-        return androidID;
-    }
-    
-    //获取Mac地址 (请预先在 AndroidManifest.xml 中声明：<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>)
-    public String getMacAddress() {
-        String macAddress = null;
-        StringBuffer buf = new StringBuffer();
-        NetworkInterface networkInterface = null;
-        try {
-            networkInterface = NetworkInterface.getByName("eth1");
-            if (networkInterface == null) {
-                networkInterface = NetworkInterface.getByName("wlan0");
-            }
-            if (networkInterface == null) {
-                return "02:00:00:00:00:02";
-            }
-            byte[] addr = networkInterface.getHardwareAddress();
-            for (byte b : addr) {
-                buf.append(String.format("%02X:", b));
-            }
-            if (buf.length() > 0) {
-                buf.deleteCharAt(buf.length() - 1);
-            }
-            macAddress = buf.toString();
-        } catch (SocketException e) {
-            e.printStackTrace();
-            return "02:00:00:00:00:02";
-        }
-        return macAddress;
-    }
+
     
     public void restartMe() {
         finish();
@@ -1279,15 +840,7 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
     protected void attachBaseContext(Context c) {
         super.attachBaseContext(LanguageUtil.wrap(c));
     }
-    
-    //支持最低SDK的getColor方法
-    public int getColorS(@ColorRes int id) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return getResources().getColor(id, getTheme());
-        } else {
-            return getResources().getColor(id);
-        }
-    }
+
     
     public View getRootView() {
         return getWindow().getDecorView().findViewById(android.R.id.content);

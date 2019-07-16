@@ -1,4 +1,4 @@
-package com.kongzue.baseframework.util.toast;
+package com.kongzue.baseframework.toast;
 
 /**
  * Author: @Kongzue
