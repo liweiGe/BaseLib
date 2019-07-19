@@ -79,7 +79,7 @@ public class DebugLogG {
     //大型打印使用，Log默认是有字数限制的，如有需要打印更长的文本可以使用此方法
     public static void bigLog(String msg) {
         Log.i(">>>bigLog", "BIGLOG.start=================================");
-        if (OtherHelper.isNull(msg)) return;
+        if (NullHelper.isNull(msg)) return;
         int strLength = msg.length();
         int start = 0;
         int end = 2000;

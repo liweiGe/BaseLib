@@ -16,8 +16,8 @@ import androidx.fragment.app.Fragment;
 import com.kongzue.baseframework.interfaces.Layout;
 import com.kongzue.baseframework.interfaces.LifeCircleListener;
 import com.kongzue.baseframework.toast.Toaster;
-import com.kongzue.baseframework.util.JumpParameter;
-import com.kongzue.baseframework.util.OnJumpResponseListener;
+import com.kongzue.baseframework.util.activityParam.JumpParameter;
+import com.kongzue.baseframework.interfaces.OnJumpResponseListener;
 
 /**
  * @Version: 6.5.5

@@ -75,7 +75,7 @@ public class Preferences {
     public void cleanAll(Context context, String path){
         SharedPreferences sp=context.getSharedPreferences(path,Context.MODE_PRIVATE);
         if(sp!=null) {
-            sp.edit().clear().commit();
+            sp.edit().clear().apply();
         }
     }
 

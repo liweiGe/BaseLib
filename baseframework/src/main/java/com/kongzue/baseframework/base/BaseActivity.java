@@ -40,11 +40,11 @@ import com.kongzue.baseframework.swipeback.util.SwipeBackLayout;
 import com.kongzue.baseframework.swipeback.util.SwipeBackUtil;
 import com.kongzue.baseframework.toast.Toaster;
 import com.kongzue.baseframework.util.AppManager;
-import com.kongzue.baseframework.util.JumpParameter;
+import com.kongzue.baseframework.util.activityParam.JumpParameter;
 import com.kongzue.baseframework.util.LanguageUtil;
-import com.kongzue.baseframework.util.OnJumpResponseListener;
-import com.kongzue.baseframework.util.OnPermissionResponseListener;
-import com.kongzue.baseframework.util.ParameterCache;
+import com.kongzue.baseframework.interfaces.OnJumpResponseListener;
+import com.kongzue.baseframework.interfaces.OnPermissionResponseListener;
+import com.kongzue.baseframework.util.activityParam.ParameterCache;
 
 import java.io.File;
 import java.io.FileInputStream;

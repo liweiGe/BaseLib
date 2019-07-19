@@ -12,7 +12,7 @@ import com.kongzue.baseframework.base.BaseActivity;
 import com.kongzue.baseframework.interfaces.DarkStatusBarTheme;
 import com.kongzue.baseframework.interfaces.Layout;
 import com.kongzue.baseframework.interfaces.SwipeBack;
-import com.kongzue.baseframework.util.JumpParameter;
+import com.kongzue.baseframework.util.activityParam.JumpParameter;
 
 @Layout(R.layout.activity_web)
 @SwipeBack(true)

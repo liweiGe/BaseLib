@@ -20,6 +20,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.kongzue.baseframework.BaseFrameworkSettings;
+import com.kongzue.baseframework.interfaces.OnPermissionResponseListener;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -157,7 +158,7 @@ public class DeviceUtils {
                             result = (String) method.invoke(telephonyManager, new Object[0]);
                         } catch (Exception e) {
                         }
-                        if (OtherHelper.isNull(result)) {
+                        if (NullHelper.isNull(result)) {
                             result = telephonyManager.getDeviceId();
                         }
                     } else {

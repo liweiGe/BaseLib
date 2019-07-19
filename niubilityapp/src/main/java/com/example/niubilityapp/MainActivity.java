@@ -11,7 +11,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.kongzue.baseframework.base.BaseActivity;
 import com.kongzue.baseframework.interfaces.DarkStatusBarTheme;
 import com.kongzue.baseframework.interfaces.Layout;
-import com.kongzue.baseframework.util.JumpParameter;
+import com.kongzue.baseframework.util.activityParam.JumpParameter;
 
 import java.util.ArrayList;
 import java.util.List;
