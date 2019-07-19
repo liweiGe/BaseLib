@@ -1,6 +1,8 @@
 package com.example.niubilityapp.model;
 
-public class DuanziBean {
+import java.io.Serializable;
+
+public class DuanziBean implements Serializable {
 
     /**
      * sid : 29005250
@@ -43,4 +45,13 @@ public class DuanziBean {
     public Object top_comments_name;
     public Object top_comments_header;
     public String passtime;
+
+    @Override
+    public String toString() {
+        return "DuanziBean{" +
+                "text='" + text + '\'' +
+                ", name='" + name + '\'' +
+                ", header='" + header + '\'' +
+                '}';
+    }
 }

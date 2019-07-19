@@ -12,6 +12,7 @@ import com.example.niubilityapp.model.DuanziBean;
 import com.kongzue.baseframework.base.BaseFragment;
 import com.kongzue.baseframework.interfaces.Layout;
 import com.zhouyou.http.EasyHttp;
+import com.zhouyou.http.cache.model.CacheResult;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;
 
@@ -49,27 +50,36 @@ public class JokeFragment extends BaseFragment implements
         if (isRefresh) {
             index = 1;
         }
+        //网络缓存的使用,真香:几个点注意,一个是缓存模式设置,第二个是cacheKey的设置
         EasyHttp.get(HttpApi.joke)
                 .params("type", "text")
                 .params("page", index + "")
+                .cacheKey("weige")
                 .params("count", "10")
-                .execute(new SimpleCallBack<List<DuanziBean>>() {
+                .execute(new SimpleCallBack<CacheResult<List<DuanziBean>>>() {
                     @Override
                     public void onError(ApiException e) {
                         swipe.setRefreshing(false);
                     }
 
                     @Override
-                    public void onSuccess(List<DuanziBean> jokeBeans) {
+                    public void onSuccess(CacheResult<List<DuanziBean>> listCacheResult) {
+                        boolean isFromCache = listCacheResult.isFromCache;
+
                         if (isRefresh) {
-                            newsAdapter.setNewData(jokeBeans);
+                            newsAdapter.setNewData(listCacheResult.data);
                         } else {
-                            newsAdapter.addData(jokeBeans);
+                            newsAdapter.addData(listCacheResult.data);
                             newsAdapter.loadMoreComplete();
+                        }
+                        if (isFromCache) {
+                            toastS("来自缓存");
+                            newsAdapter.setEnableLoadMore(false);
+                        }else {
+                            newsAdapter.setEnableLoadMore(true);
                         }
                         index++;
                         swipe.setRefreshing(false);
-
                     }
                 });
     }

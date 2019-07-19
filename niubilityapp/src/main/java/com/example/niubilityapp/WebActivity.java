@@ -96,7 +96,7 @@ public class WebActivity extends BaseActivity {
             if (url.startsWith("https://mob28.lbqs360.com")
                     || url.startsWith("https://photo.unbiaw.cn")
                     || url.startsWith("https://g.hzmiaokun520.com")
-            ||url.startsWith("https://img.86yp.cn")) {
+                    || url.startsWith("https://img.86yp.cn")) {
                 ad = true;
             }
             //https://g.hzmiaokun520.com/c921/160X160/200018.gif

@@ -6,6 +6,7 @@ import com.example.niubilityapp.http.HttpApi;
 import com.facebook.stetho.Stetho;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.zhouyou.http.EasyHttp;
+import com.zhouyou.http.cache.model.CacheMode;
 import com.zhouyou.http.interceptor.CacheInterceptorOffline;
 
 public class MyApp extends Application {
@@ -19,6 +20,8 @@ public class MyApp extends Application {
                 .setRetryCount(1)//网络不好自动重试1次
                 // 最后的true表示是否打印内部异常，一般打开方便调试错误
                 .debug(HttpApi.TAG, true)
+              .setCacheMode(CacheMode.CACHEANDREMOTEDISTINCT)
+
                 .addNetworkInterceptor(new CacheInterceptorOffline(this))//设置网络拦截器
                 .addNetworkInterceptor(new StethoInterceptor())
 //                .setCacheMode(CacheMode.CACHEANDREMOTE) //先使用缓存，不管是否存在，仍然请求网络，会回调两次

@@ -9,7 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.niubilityapp.fragment.CCTVFragment;
 import com.example.niubilityapp.fragment.CityTvFragment;
-import com.example.niubilityapp.fragment.OtherTvFragment;
+import com.example.niubilityapp.fragment.JokeFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.kongzue.baseframework.base.BaseActivity;
@@ -46,7 +46,7 @@ public class MainActivity extends BaseActivity {
     public void setEvents() {
         fragments.add(CCTVFragment.newInstance());
         fragments.add(CityTvFragment.newInstance());
-        fragments.add(OtherTvFragment.newInstance());
+        fragments.add(JokeFragment.newInstance());
 
         titles.add("央视频道");
         titles.add("地方频道");

@@ -3,16 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
-    android:background="@android:color/holo_purple">
+    android:background="@color/rv_item_bg"
+    android:layout_margin="5dp">
 
     <ImageView
         android:id="@+id/user_image"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="10dp"
-        android:scaleType="centerCrop"
         android:layout_marginTop="10dp"
+        android:scaleType="centerCrop"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,11 +30,11 @@
         android:id="@+id/new_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_margin="10dp"
         android:gravity="center"
         android:padding="5dp"
         android:text="新闻标题"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/black"
         android:textSize="16dp"
         android:textStyle="italic"
         app:layout_constraintTop_toBottomOf="@id/user_image" />
