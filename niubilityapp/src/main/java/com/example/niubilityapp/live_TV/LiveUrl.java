@@ -4,25 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class LiveUrl {
-    public static List<VideoBean> getVideoList() {
-        List<VideoBean> videoList = new ArrayList<>();
-        //央视
-        videoList.add(new VideoBean("CCTV-1综合", "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8"));
-        videoList.add(new VideoBean("CCTV-2财经", "http://ivi.bupt.edu.cn/hls/cctv2.m3u8"));
-        videoList.add(new VideoBean("CCTV-3综艺", "http://ivi.bupt.edu.cn/hls/cctv3.m3u8"));
-        videoList.add(new VideoBean("CCTV-4中文国际", "http://ivi.bupt.edu.cn/hls/cctv4.m3u8"));
-        videoList.add(new VideoBean("CCTV-5体育", "http://ivi.bupt.edu.cn/hls/cctv5.m3u8"));
-        videoList.add(new VideoBean("CCTV-6电影", "http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8"));
-        videoList.add(new VideoBean("CCTV-7军事农业", "http://ivi.bupt.edu.cn/hls/cctv7.m3u8"));
-        videoList.add(new VideoBean("CCTV-8电视剧", "http://ivi.bupt.edu.cn/hls/cctv8.m3u8"));
-        videoList.add(new VideoBean("CCTV-9纪录", "http://ivi.bupt.edu.cn/hls/cctv9.m3u8"));
-        videoList.add(new VideoBean("CCTV-10科教", "http://ivi.bupt.edu.cn/hls/cctv10.m3u8"));
-        videoList.add(new VideoBean("CCTV-11戏曲", "http://ivi.bupt.edu.cn/hls/cctv11.m3u8"));
-        videoList.add(new VideoBean("CCTV-12社会与法", "http://ivi.bupt.edu.cn/hls/cctv12.m3u8"));
-        videoList.add(new VideoBean("CCTV-13新闻", "http://ivi.bupt.edu.cn/hls/cctv13.m3u8"));
-        videoList.add(new VideoBean("CCTV-14少儿", "http://ivi.bupt.edu.cn/hls/cctv14.m3u8"));
-        videoList.add(new VideoBean("CCTV-15音乐", "http://ivi.bupt.edu.cn/hls/cctv15.m3u8"));
-        videoList.add(new VideoBean("CCTV-NEWS", "http://ivi.bupt.edu.cn/hls/cctv16.m3u8"));
+    public static List<VideoBean> getCityVideoList() {
+        List<VideoBean> videoList = new ArrayList<>(64);
         //北京卫视
         videoList.add(new VideoBean("北京卫视", "http://ivi.bupt.edu.cn/hls/btv1.m3u8"));
         videoList.add(new VideoBean("北京文艺", "http://ivi.bupt.edu.cn/hls/btv2.m3u8"));
@@ -65,6 +48,11 @@ public final class LiveUrl {
         videoList.add(new VideoBean("宁夏卫视", "http://ivi.bupt.edu.cn/hls/nxtv.m3u8"));
         videoList.add(new VideoBean("甘肃卫视", "http://ivi.bupt.edu.cn/hls/gstv.m3u8"));
         videoList.add(new VideoBean("重庆卫视", "http://ivi.bupt.edu.cn/hls/cqtv.m3u8"));
+        return videoList;
+    }
+
+    public static List<VideoBean> getOtherVideoList() {
+        List<VideoBean> videoList = new ArrayList<>(16);
 
         //外台
         videoList.add(new VideoBean("兵团卫视", "http://ivi.bupt.edu.cn/hls/bttv.m3u8"));
@@ -85,6 +73,29 @@ public final class LiveUrl {
         videoList.add(new VideoBean("神雕侠侣", "http://tx.hls.huya.com/huyalive/29359996-2689607114-11551774593718943744-2847687530-10057-A-1525492553-1.m3u8"));
         videoList.add(new VideoBean("虎牙直播", "https://al.hls.huya.com/huyalive/78941969-2559461593-10992803837303062528-2693342886-10057-A-0-1_1200.m3u8"));
         videoList.add(new VideoBean("漫威电影", "http://tx.hls.huya.com/huyalive/30765679-2504742278-10757786168918540288-3049003128-10057-A-0-1.m3u8"));
+
+        return videoList;
+    }
+
+    public static List<VideoBean> getCCTVVideoList() {
+        List<VideoBean> videoList = new ArrayList<>(16);
+        //央视
+        videoList.add(new VideoBean("CCTV-1综合", "http://ivi.bupt.edu.cn/hls/cctv1hd.m3u8"));
+        videoList.add(new VideoBean("CCTV-2财经", "http://ivi.bupt.edu.cn/hls/cctv2.m3u8"));
+        videoList.add(new VideoBean("CCTV-3综艺", "http://ivi.bupt.edu.cn/hls/cctv3.m3u8"));
+        videoList.add(new VideoBean("CCTV-4中文国际", "http://ivi.bupt.edu.cn/hls/cctv4.m3u8"));
+        videoList.add(new VideoBean("CCTV-5体育", "http://ivi.bupt.edu.cn/hls/cctv5.m3u8"));
+        videoList.add(new VideoBean("CCTV-6电影", "http://ivi.bupt.edu.cn/hls/cctv6hd.m3u8"));
+        videoList.add(new VideoBean("CCTV-7军事农业", "http://ivi.bupt.edu.cn/hls/cctv7.m3u8"));
+        videoList.add(new VideoBean("CCTV-8电视剧", "http://ivi.bupt.edu.cn/hls/cctv8.m3u8"));
+        videoList.add(new VideoBean("CCTV-9纪录", "http://ivi.bupt.edu.cn/hls/cctv9.m3u8"));
+        videoList.add(new VideoBean("CCTV-10科教", "http://ivi.bupt.edu.cn/hls/cctv10.m3u8"));
+        videoList.add(new VideoBean("CCTV-11戏曲", "http://ivi.bupt.edu.cn/hls/cctv11.m3u8"));
+        videoList.add(new VideoBean("CCTV-12社会与法", "http://ivi.bupt.edu.cn/hls/cctv12.m3u8"));
+        videoList.add(new VideoBean("CCTV-13新闻", "http://ivi.bupt.edu.cn/hls/cctv13.m3u8"));
+        videoList.add(new VideoBean("CCTV-14少儿", "http://ivi.bupt.edu.cn/hls/cctv14.m3u8"));
+        videoList.add(new VideoBean("CCTV-15音乐", "http://ivi.bupt.edu.cn/hls/cctv15.m3u8"));
+        videoList.add(new VideoBean("CCTV-NEWS", "http://ivi.bupt.edu.cn/hls/cctv16.m3u8"));
 
         return videoList;
     }

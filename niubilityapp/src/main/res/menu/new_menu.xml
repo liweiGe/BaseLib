@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/play"
+            android:icon="@mipmap/ic_launcher_round"
+            android:title="娱乐" />
+        <item
+            android:id="@+id/night"
+            android:icon="@mipmap/ic_launcher_round"
+            android:title="黑白模式切换" />
+        <item
+            android:id="@+id/web_video1"
+            android:icon="@mipmap/ic_launcher_round"
+            android:title="二猫影院" />
+        <item
+            android:id="@+id/web_video2"
+            android:icon="@mipmap/ic_launcher_round"
+            android:title="4K屋" />
+        <item
+            android:id="@+id/web_video3"
+            android:icon="@mipmap/ic_launcher_round"
+            android:title="泡泡影视" />
+        <item
+            android:id="@+id/web_video4"
+            android:icon="@mipmap/ic_launcher_round"
+            android:title="音悦台" />
+    </group>
+</menu>

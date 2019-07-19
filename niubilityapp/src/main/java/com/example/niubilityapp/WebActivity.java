@@ -3,9 +3,15 @@ package com.example.niubilityapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
+import android.webkit.WebResourceResponse;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
+
+import androidx.annotation.Nullable;
 
 import com.just.agentweb.AgentWeb;
 import com.kongzue.baseframework.base.BaseActivity;
@@ -13,6 +19,9 @@ import com.kongzue.baseframework.interfaces.DarkStatusBarTheme;
 import com.kongzue.baseframework.interfaces.Layout;
 import com.kongzue.baseframework.interfaces.SwipeBack;
 import com.kongzue.baseframework.util.activityParam.JumpParameter;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Layout(R.layout.activity_web)
 @SwipeBack(true)
@@ -47,7 +56,7 @@ public class WebActivity extends BaseActivity {
                                 ViewGroup.LayoutParams.MATCH_PARENT))
                 .useDefaultIndicator()
 //                .setWebChromeClient(mWebChromeClient)
-//                .setWebViewClient(client)
+                .setWebViewClient(client)
                 .createAgentWeb()
                 .ready()
                 .go(url);
@@ -59,6 +68,42 @@ public class WebActivity extends BaseActivity {
         mAgentWeb.getAgentWebSettings().getWebSettings().setBuiltInZoomControls(true);
         mAgentWeb.getAgentWebSettings().getWebSettings().setDisplayZoomControls(false);
     }
+
+    /**
+     * 完善去广告的功能
+     */
+    static {
+        loadedUrls = new HashMap<>();
+    }
+
+    static Map<String, Boolean> loadedUrls;
+    WebViewClient client = new WebViewClient() {
+
+        @Nullable
+        @Override
+        public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+            boolean ad;
+            if (!loadedUrls.containsKey(url)) {
+                ad = AdBlocker.isAd(url);
+                loadedUrls.put(url, ad);
+            } else {
+                ad = loadedUrls.get(url);
+            }
+            Log.i("@@@@@", "shouldInterceptRequest: " + url);
+            if (url.startsWith("https://ke.4urc.com")) {
+                ad = true;
+            }
+            if (url.startsWith("https://mob28.lbqs360.com")
+                    || url.startsWith("https://photo.unbiaw.cn")
+                    || url.startsWith("https://g.hzmiaokun520.com")
+            ||url.startsWith("https://img.86yp.cn")) {
+                ad = true;
+            }
+            //https://g.hzmiaokun520.com/c921/160X160/200018.gif
+            return ad ? AdBlocker.createEmptyResource() :
+                    super.shouldInterceptRequest(view, url);
+        }
+    };
 
     @Override
     public void initDatas(JumpParameter paramer) {

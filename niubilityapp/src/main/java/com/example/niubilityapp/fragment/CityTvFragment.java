@@ -10,12 +10,12 @@ import com.kongzue.baseframework.base.BaseFragment;
 import com.kongzue.baseframework.interfaces.Layout;
 
 @Layout(R.layout.activity_recycler_view)
-public class RvFragment extends BaseFragment {
+public class CityTvFragment extends BaseFragment {
 
     private RecyclerView recyclerView;
 
     public static Fragment newInstance() {
-        return new RvFragment();
+        return new CityTvFragment();
     }
 
     @Override
@@ -26,7 +26,7 @@ public class RvFragment extends BaseFragment {
 
     @Override
     public void initDatas() {
-        recyclerView.setAdapter(new LiveAdapter(LiveUrl.getVideoList(), me));
+        recyclerView.setAdapter(new LiveAdapter(LiveUrl.getCityVideoList(), me));
     }
 
     @Override

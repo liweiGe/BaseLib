@@ -41,6 +41,6 @@ public class LiveUrlActivity extends AppCompatActivity {
 
     private void initView() {
         RecyclerView recyclerView = findViewById(R.id.rv);
-        recyclerView.setAdapter(new LiveAdapter(LiveUrl.getVideoList(), this));
+        recyclerView.setAdapter(new LiveAdapter(LiveUrl.getCCTVVideoList(), this));
     }
 }
