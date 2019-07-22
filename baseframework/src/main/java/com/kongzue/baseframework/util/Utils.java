@@ -300,8 +300,6 @@ public final class Utils {
 
         @Override
         public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-            LanguageUtil.wrap(activity);
-
             setAnimatorsEnabled();
             setTopActivity(activity);
         }

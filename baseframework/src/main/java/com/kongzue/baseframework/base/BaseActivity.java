@@ -33,6 +33,8 @@ import com.kongzue.baseframework.interfaces.GlobalLifeCircleListener;
 import com.kongzue.baseframework.interfaces.Layout;
 import com.kongzue.baseframework.interfaces.LifeCircleListener;
 import com.kongzue.baseframework.interfaces.NavigationBarBackgroundColor;
+import com.kongzue.baseframework.interfaces.OnJumpResponseListener;
+import com.kongzue.baseframework.interfaces.OnPermissionResponseListener;
 import com.kongzue.baseframework.interfaces.SwipeBack;
 import com.kongzue.baseframework.swipeback.util.SwipeBackActivityBase;
 import com.kongzue.baseframework.swipeback.util.SwipeBackActivityHelper;
@@ -41,9 +43,6 @@ import com.kongzue.baseframework.swipeback.util.SwipeBackUtil;
 import com.kongzue.baseframework.toast.Toaster;
 import com.kongzue.baseframework.util.AppManager;
 import com.kongzue.baseframework.util.activityParam.JumpParameter;
-import com.kongzue.baseframework.util.LanguageUtil;
-import com.kongzue.baseframework.interfaces.OnJumpResponseListener;
-import com.kongzue.baseframework.interfaces.OnPermissionResponseListener;
 import com.kongzue.baseframework.util.activityParam.ParameterCache;
 
 import java.io.File;
@@ -836,10 +835,7 @@ public abstract class BaseActivity extends AppCompatActivity implements SwipeBac
         getSwipeBackLayout().scrollToFinishActivity();
     }
     
-    @Override
-    protected void attachBaseContext(Context c) {
-        super.attachBaseContext(LanguageUtil.wrap(c));
-    }
+
 
     
     public View getRootView() {

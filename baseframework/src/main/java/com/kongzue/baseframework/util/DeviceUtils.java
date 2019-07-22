@@ -158,7 +158,7 @@ public class DeviceUtils {
                             result = (String) method.invoke(telephonyManager, new Object[0]);
                         } catch (Exception e) {
                         }
-                        if (NullHelper.isNull(result)) {
+                        if (ObjectUtils.isEmpty(result)) {
                             result = telephonyManager.getDeviceId();
                         }
                     } else {
