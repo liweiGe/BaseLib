@@ -54,7 +54,7 @@ public class JokeFragment extends BaseFragment implements
         EasyHttp.get(HttpApi.joke)
                 .params("type", "text")
                 .params("page", index + "")
-                .cacheKey("weige")
+                .cacheKey("duanzi")
                 .params("count", "10")
                 .execute(new SimpleCallBack<CacheResult<List<DuanziBean>>>() {
                     @Override
@@ -64,20 +64,13 @@ public class JokeFragment extends BaseFragment implements
 
                     @Override
                     public void onSuccess(CacheResult<List<DuanziBean>> listCacheResult) {
-                        boolean isFromCache = listCacheResult.isFromCache;
-
                         if (isRefresh) {
                             newsAdapter.setNewData(listCacheResult.data);
                         } else {
                             newsAdapter.addData(listCacheResult.data);
                             newsAdapter.loadMoreComplete();
                         }
-                        if (isFromCache) {
-                            toastS("来自缓存");
-                            newsAdapter.setEnableLoadMore(false);
-                        }else {
-                            newsAdapter.setEnableLoadMore(true);
-                        }
+
                         index++;
                         swipe.setRefreshing(false);
                     }

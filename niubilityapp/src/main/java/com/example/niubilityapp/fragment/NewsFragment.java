@@ -53,6 +53,7 @@ public class NewsFragment extends BaseFragment implements SwipeRefreshLayout.OnR
         EasyHttp.get(HttpApi.news)
                 .params("page", index + "")
                 .params("count", "8")
+                .cacheKey("wangyi_news")
                 .execute(new SimpleCallBack<List<JokeBean>>() {
                     @Override
                     public void onError(ApiException e) {

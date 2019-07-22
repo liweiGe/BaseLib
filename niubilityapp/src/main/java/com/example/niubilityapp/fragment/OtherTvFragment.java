@@ -21,7 +21,6 @@ public class OtherTvFragment extends BaseFragment {
     @Override
     public void initViews() {
         recyclerView = (RecyclerView) findViewById(R.id.rv);
-
     }
 
     @Override

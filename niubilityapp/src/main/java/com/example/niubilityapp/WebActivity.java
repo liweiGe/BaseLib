@@ -82,26 +82,14 @@ public class WebActivity extends BaseActivity {
         @Nullable
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-            boolean ad;
-            if (!loadedUrls.containsKey(url)) {
-                ad = AdBlocker.isAd(url);
-                loadedUrls.put(url, ad);
-            } else {
-                ad = loadedUrls.get(url);
+            Log.i("@@@@", "url : "+url);
+            //做广告拦截，ADFIlterTool 为广告拦截工具类
+            if (!AdBlocker.hasAd(getBaseContext(),url)){
+                return super.shouldInterceptRequest(view, url);
+            }else {
+                Log.i("@@@@", "拦截");
+                return new WebResourceResponse(null,null,null);
             }
-            Log.i("@@@@@", "shouldInterceptRequest: " + url);
-            if (url.startsWith("https://ke.4urc.com")) {
-                ad = true;
-            }
-            if (url.startsWith("https://mob28.lbqs360.com")
-                    || url.startsWith("https://photo.unbiaw.cn")
-                    || url.startsWith("https://g.hzmiaokun520.com")
-                    || url.startsWith("https://img.86yp.cn")) {
-                ad = true;
-            }
-            //https://g.hzmiaokun520.com/c921/160X160/200018.gif
-            return ad ? AdBlocker.createEmptyResource() :
-                    super.shouldInterceptRequest(view, url);
         }
     };
 

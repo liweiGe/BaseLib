@@ -33,6 +33,7 @@
             android:name=".WebActivity"
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true" />
+        <activity android:name=".EntertainmentActivity" />
     </application>
 
 </manifest>
