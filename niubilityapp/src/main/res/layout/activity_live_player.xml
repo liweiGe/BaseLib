@@ -42,4 +42,14 @@
             android:text="4:3" />
     </LinearLayout>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:text="搜索设备"
+        android:onClick="search_devices"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="wrap_content"
+        android:text="停止搜索"
+        android:onClick="stop_search"
+        android:layout_height="wrap_content" />
 </LinearLayout>

@@ -8,5 +8,6 @@ public interface HttpApi {
     String baseUrl = "https://api.apiopen.top/";
     String news = "getWangYiNews"; //新闻
     String joke = "getJoke"; //段子列表
-
+    String zhihu = "https://news-at.zhihu.com/api/3/news/hot";
+    String wangyi = "http://c.m.163.com/nc/article/list/T1467284926140/0-20.html";
 }

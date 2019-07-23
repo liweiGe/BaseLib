@@ -1,4 +1,4 @@
-package com.example.niubilityapp;
+package com.example.niubilityapp.activity;
 
 import android.app.UiModeManager;
 import android.content.Context;
@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.niubilityapp.R;
 import com.example.niubilityapp.fragment.CCTVFragment;
 import com.example.niubilityapp.fragment.CityTvFragment;
 import com.example.niubilityapp.fragment.OtherTvFragment;

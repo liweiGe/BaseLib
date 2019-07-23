@@ -1,4 +1,4 @@
-package com.example.niubilityapp;
+package com.example.niubilityapp.activity;
 
 
 import android.content.Context;
@@ -7,12 +7,15 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
 import android.webkit.WebResourceResponse;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
 import androidx.annotation.Nullable;
 
+import com.example.niubilityapp.AdBlocker;
+import com.example.niubilityapp.R;
 import com.just.agentweb.AgentWeb;
 import com.kongzue.baseframework.base.BaseActivity;
 import com.kongzue.baseframework.interfaces.DarkStatusBarTheme;
@@ -63,10 +66,8 @@ public class WebActivity extends BaseActivity {
 
         mAgentWeb.getAgentWebSettings().getWebSettings().setLoadWithOverviewMode(true);
         mAgentWeb.getAgentWebSettings().getWebSettings().setUseWideViewPort(true);
-        //支持缩放
-        mAgentWeb.getAgentWebSettings().getWebSettings().setSupportZoom(true);
-        mAgentWeb.getAgentWebSettings().getWebSettings().setBuiltInZoomControls(true);
-        mAgentWeb.getAgentWebSettings().getWebSettings().setDisplayZoomControls(false);
+
+        mAgentWeb.getAgentWebSettings().getWebSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
     }
 
     /**

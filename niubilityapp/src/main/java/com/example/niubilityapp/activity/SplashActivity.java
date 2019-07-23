@@ -1,4 +1,4 @@
-package com.example.niubilityapp;
+package com.example.niubilityapp.activity;
 
 import android.app.UiModeManager;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.niubilityapp.R;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.callback.SimpleCallBack;
 import com.zhouyou.http.exception.ApiException;

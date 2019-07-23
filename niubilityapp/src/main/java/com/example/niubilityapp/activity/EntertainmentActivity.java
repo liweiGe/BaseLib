@@ -1,11 +1,13 @@
-package com.example.niubilityapp;
+package com.example.niubilityapp.activity;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.niubilityapp.R;
 import com.example.niubilityapp.fragment.JokeFragment;
 import com.example.niubilityapp.fragment.NewsFragment;
+import com.example.niubilityapp.fragment.ZhiHuFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.kongzue.baseframework.base.BaseActivity;
 import com.kongzue.baseframework.interfaces.DarkStatusBarTheme;
@@ -43,9 +45,11 @@ public class EntertainmentActivity extends BaseActivity {
     public void setEvents() {
         fragments.add(NewsFragment.newInstance());
         fragments.add(JokeFragment.newInstance());
+        fragments.add(ZhiHuFragment.newInstance());
 
         titles.add("网易新闻");
         titles.add("段子");
+        titles.add("知乎精选");
 
         viewPager.setAdapter(new FragmentStatePagerAdapter(getSupportFragmentManager(),
                 FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {

@@ -50,8 +50,12 @@ public class ApiResult<T> {
         this.result = data;
     }
 
+    /**
+     * 每个接口的成功不一样
+     * @return
+     */
     public boolean isOk() {
-        return code == 200;
+        return true;
     }
 
     @Override
