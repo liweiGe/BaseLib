@@ -114,9 +114,13 @@ public class LivePlayerActivity extends AppCompatActivity {
                     lelinkServiceInfo = infos.get(0);
                     tp_tv.setText(lelinkServiceInfo.getName());
                     instance.stopBrowse();
-                } else if (what == 10) {
+                } else if (what == 10 || what == 11 || what == 12) {
                     if (dialog2 != null && dialog2.isShowing()) {
                         dialog2.dismiss();
+                    }
+                } else if (what == 2 || what == 3) {
+                    if (dialog1 != null && dialog1.isShowing()) {
+                        dialog1.dismiss();
                     }
                 }
                 Toaster.build(getBaseContext()).show(deatail.text);
@@ -176,6 +180,7 @@ public class LivePlayerActivity extends AppCompatActivity {
                 .setMessage("正在搜索")
                 .setCancelable(false)
                 .show();
+        dialog1.setOnDismissListener(dialog -> instance.stopBrowse());
     }
 
     public void stop_search(View view) {
