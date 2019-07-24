@@ -208,6 +208,16 @@ public class AllCast {
         mLelinkPlayer.start();
     }
 
+    public void playNetMedia(String url, int type) {
+        LelinkPlayerInfo lelinkPlayerInfo = new LelinkPlayerInfo();
+        lelinkPlayerInfo.setType(type);
+        lelinkPlayerInfo.setUrl(url);
+//        lelinkPlayerInfo.setOption(IAPI.OPTION_6, screenCode);
+        // lelinkPlayerInfo.setStartPosition(15);
+        mLelinkPlayer.setDataSource(lelinkPlayerInfo);
+        mLelinkPlayer.start();
+    }
+
     public void playNetMediaWithAsset(String url, int type) {
         LelinkPlayerInfo lelinkPlayerInfo = new LelinkPlayerInfo();
         lelinkPlayerInfo.setType(type);

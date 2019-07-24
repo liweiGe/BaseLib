@@ -134,7 +134,10 @@ public class LelinkHelper {
     public void playNetMedia(String url, int mediaType, String screencode) {
         mAllCast.playNetMedia(url, mediaType, screencode);
     }
-
+    //自己添加
+    public void playNetMedia(String url, int mediaType) {
+        mAllCast.playNetMedia(url, mediaType);
+    }
     public void sendDanmaku() {
         mAllCast.sendDanmaku();
     }

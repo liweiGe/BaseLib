@@ -30,9 +30,9 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="screenScale169"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:onClick="screenScale169"
             android:text="16:9" />
 
         <Button
@@ -44,12 +44,56 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:text="搜索设备"
+        android:layout_height="wrap_content"
         android:onClick="search_devices"
-        android:layout_height="wrap_content" />
-    <Button
-        android:layout_width="wrap_content"
-        android:text="停止搜索"
-        android:onClick="stop_search"
-        android:layout_height="wrap_content" />
+        android:text="搜索设备" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp">
+
+        <Button
+            android:id="@+id/concat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="stop_search"
+            android:text="投屏" />
+
+        <TextView
+            android:id="@+id/tp_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/disconcat"
+            android:text="搜索到的设备展示再这里(设备展示后点击即为链接操作)"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/disconcat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/concat"
+            android:text="断开链接" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/concat"
+            android:layout_marginTop="50dp"
+            android:text="暂停" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/concat"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="50dp"
+            android:text="播放" />
+    </RelativeLayout>
 </LinearLayout>

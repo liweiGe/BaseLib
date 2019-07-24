@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -20,9 +22,11 @@ import com.example.niubilityapp.R;
 import com.example.niubilityapp.leboTP.IUIUpdateListener;
 import com.example.niubilityapp.leboTP.LelinkHelper;
 import com.example.niubilityapp.leboTP.MessageDeatail;
+import com.hpplay.sdk.source.api.LelinkPlayerInfo;
 import com.hpplay.sdk.source.browse.api.ILelinkServiceManager;
 import com.hpplay.sdk.source.browse.api.LelinkServiceInfo;
 import com.kongzue.baseframework.toast.Toaster;
+import com.kongzue.baseframework.util.ObjectUtils;
 
 import java.util.List;
 
@@ -35,7 +39,11 @@ public class LivePlayerActivity extends AppCompatActivity {
 
     private IjkVideoView ijkVideoView;
     private LelinkHelper instance;
-
+    private TextView tp_tv;
+    private LelinkServiceInfo lelinkServiceInfo;
+    private String url;
+    private AlertDialog dialog1;
+    private AlertDialog dialog2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,7 +67,8 @@ public class LivePlayerActivity extends AppCompatActivity {
             controller.setTitle(title);
             //自己添加实验
 //            ijkVideoView.setLooping(true);
-            ijkVideoView.setUrl(intent.getStringExtra("url"));
+            url = intent.getStringExtra("url");
+            ijkVideoView.setUrl(url);
             ijkVideoView.setVideoController(controller);
             ijkVideoView.start();
         }
@@ -74,6 +83,20 @@ public class LivePlayerActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_PHONE_STATE,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
         }
+
+        tp_tv = findViewById(R.id.tp_tv);
+        tp_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (lelinkServiceInfo == null) return;
+                instance.connect(lelinkServiceInfo);
+                dialog2 = new AlertDialog.Builder(v.getContext())
+                        .setMessage("正在连接tv")
+                        .setCancelable(false)
+                        .show();
+
+            }
+        });
     }
 
     private void initLelinkHelper() {
@@ -82,13 +105,21 @@ public class LivePlayerActivity extends AppCompatActivity {
             @Override
             public void onUpdate(int what, MessageDeatail deatail) {
                 Log.i("aaa", "onUpdate: " + deatail.toString());
-                List<LelinkServiceInfo> infos = instance.getInfos();
-                StringBuilder builder = new StringBuilder();
-                for (int i = 0; i < infos.size(); i++) {
-                    builder.append(infos.get(i).getName());
-                    builder.append("????");
+                if (what == 1) {
+                    if (dialog1 != null && dialog1.isShowing()) {
+                        dialog1.dismiss();
+                    }
+                    List<LelinkServiceInfo> infos = instance.getInfos();
+                    if (ObjectUtils.isEmpty(infos)) return;
+                    lelinkServiceInfo = infos.get(0);
+                    tp_tv.setText(lelinkServiceInfo.getName());
+                    instance.stopBrowse();
+                } else if (what == 10) {
+                    if (dialog2 != null && dialog2.isShowing()) {
+                        dialog2.dismiss();
+                    }
                 }
-                Toaster.build(getBaseContext()).show(builder.toString());
+                Toaster.build(getBaseContext()).show(deatail.text);
             }
         });
     }
@@ -141,9 +172,14 @@ public class LivePlayerActivity extends AppCompatActivity {
 
     public void search_devices(View view) {
         instance.browse(ILelinkServiceManager.TYPE_ALL);
+        dialog1 = new AlertDialog.Builder(this)
+                .setMessage("正在搜索")
+                .setCancelable(false)
+                .show();
     }
 
     public void stop_search(View view) {
-        instance.stopBrowse();
+        //链接成功
+        instance.playNetMedia(url, LelinkPlayerInfo.TYPE_VIDEO);
     }
 }
