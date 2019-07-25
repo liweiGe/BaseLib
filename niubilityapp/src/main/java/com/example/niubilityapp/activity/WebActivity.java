@@ -23,9 +23,6 @@ import com.kongzue.baseframework.interfaces.Layout;
 import com.kongzue.baseframework.interfaces.SwipeBack;
 import com.kongzue.baseframework.util.activityParam.JumpParameter;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Layout(R.layout.activity_web)
 @SwipeBack(true)
 @DarkStatusBarTheme(true)
@@ -70,14 +67,7 @@ public class WebActivity extends BaseActivity {
         mAgentWeb.getAgentWebSettings().getWebSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
     }
 
-    /**
-     * 完善去广告的功能
-     */
-    static {
-        loadedUrls = new HashMap<>();
-    }
 
-    static Map<String, Boolean> loadedUrls;
     WebViewClient client = new WebViewClient() {
 
         @Nullable

@@ -3,6 +3,7 @@ package com.example.niubilityapp.fragment;
 import androidx.fragment.app.Fragment;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.niubilityapp.R;
 import com.example.niubilityapp.adapter.JokeAdapter;
 import com.example.niubilityapp.http.HttpApi;
@@ -16,14 +17,14 @@ import com.zhouyou.http.exception.ApiException;
 import java.util.List;
 
 @Layout(R.layout.fragment_list_view)
-public class JokeFragment extends ListFragment {
+public class JokeFragment extends ListFragment<DuanziBean> {
 
     public static Fragment newInstance() {
         return new JokeFragment();
     }
 
     @Override
-    protected BaseQuickAdapter getAdapter() {
+    protected BaseQuickAdapter<DuanziBean, BaseViewHolder> getAdapter() {
         return new JokeAdapter();
     }
 

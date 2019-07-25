@@ -6,17 +6,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.niubilityapp.R;
 import com.kongzue.baseframework.base.BaseFragment;
 import com.kongzue.baseframework.interfaces.Layout;
 
 @Layout(R.layout.fragment_list_view)
-public abstract class ListFragment extends BaseFragment implements
+public abstract class ListFragment<T> extends BaseFragment implements
         SwipeRefreshLayout.OnRefreshListener,
         BaseQuickAdapter.RequestLoadMoreListener, BaseQuickAdapter.OnItemClickListener {
 
     public RecyclerView recyclerView;
-    public BaseQuickAdapter adapter;
+    public BaseQuickAdapter<T, BaseViewHolder> adapter;
     public SwipeRefreshLayout swipe;
 
 //    public abstract static Fragment newInstance();
@@ -30,7 +31,7 @@ public abstract class ListFragment extends BaseFragment implements
         swipe.setRefreshing(true);
     }
 
-    protected abstract BaseQuickAdapter getAdapter();
+    protected abstract BaseQuickAdapter<T,BaseViewHolder> getAdapter();
 
     int index = 1;
 
