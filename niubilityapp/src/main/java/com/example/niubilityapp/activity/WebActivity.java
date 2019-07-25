@@ -17,14 +17,14 @@ import androidx.annotation.Nullable;
 import com.example.niubilityapp.AdBlocker;
 import com.example.niubilityapp.R;
 import com.just.agentweb.AgentWeb;
+import com.just.agentweb.DefaultWebClient;
 import com.kongzue.baseframework.base.BaseActivity;
 import com.kongzue.baseframework.interfaces.DarkStatusBarTheme;
 import com.kongzue.baseframework.interfaces.Layout;
-import com.kongzue.baseframework.interfaces.SwipeBack;
 import com.kongzue.baseframework.util.activityParam.JumpParameter;
 
 @Layout(R.layout.activity_web)
-@SwipeBack(true)
+
 @DarkStatusBarTheme(true)
 public class WebActivity extends BaseActivity {
 
@@ -55,6 +55,7 @@ public class WebActivity extends BaseActivity {
                         new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                                 ViewGroup.LayoutParams.MATCH_PARENT))
                 .useDefaultIndicator()
+                .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)
 //                .setWebChromeClient(mWebChromeClient)
                 .setWebViewClient(client)
                 .createAgentWeb()
