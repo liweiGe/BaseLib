@@ -49,6 +49,7 @@
             android:configChanges="orientation|screenSize"
             android:hardwareAccelerated="true" />
         <activity android:name=".activity.EntertainmentActivity" />
+        <activity android:name=".activity.ApiNewsActivity" />
     </application>
 
 </manifest>

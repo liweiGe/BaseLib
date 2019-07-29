@@ -10,6 +10,11 @@
             android:id="@+id/night"
             android:icon="@mipmap/ic_launcher_round"
             android:title="黑白模式切换" />
+
+
+    </group>
+
+    <group android:checkableBehavior="single" android:menuCategory="secondary">
         <item
             android:id="@+id/web_video1"
             android:icon="@mipmap/ic_launcher_round"
@@ -22,9 +27,18 @@
             android:id="@+id/web_video3"
             android:icon="@mipmap/ic_launcher_round"
             android:title="泡泡影视" />
+
         <item
             android:id="@+id/web_video4"
             android:icon="@mipmap/ic_launcher_round"
             android:title="音悦台" />
+        <item
+            android:id="@+id/web_video5"
+            android:icon="@mipmap/ic_launcher_round"
+            android:title="80影视" />
+        <item
+            android:id="@+id/web_video6"
+            android:icon="@mipmap/ic_launcher_round"
+            android:title="全民电影天堂" />
     </group>
 </menu>

@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Layout(R.layout.activity_entertainment)
 @DarkStatusBarTheme(true)           //开启顶部状态栏图标、文字暗色模式
-public class EntertainmentActivity extends BaseActivity {
+public class ApiNewsActivity extends BaseActivity {
     List<Fragment> fragments = new ArrayList<>();
     List<String> titles = new ArrayList<>();
     TabLayout tabLayout;

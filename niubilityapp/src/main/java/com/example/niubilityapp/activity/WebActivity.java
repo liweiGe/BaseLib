@@ -3,9 +3,12 @@ package com.example.niubilityapp.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.http.SslError;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -82,6 +85,17 @@ public class WebActivity extends BaseActivity {
                 Log.i("@@@@", "拦截");
                 return new WebResourceResponse(null,null,null);
             }
+        }
+
+        @Override
+        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+            handler.proceed();
+//            super.onReceivedSslError(view, handler, error);
+        }
+
+        @Override
+        public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
+            super.onReceivedHttpError(view, request, errorResponse);
         }
     };
 

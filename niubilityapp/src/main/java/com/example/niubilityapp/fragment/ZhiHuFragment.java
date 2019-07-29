@@ -23,19 +23,7 @@ public class ZhiHuFragment extends ListFragment {
 
     @Override
     protected void httpNet(boolean isRefresh) {
-//        EasyHttp.get(HttpApi.wangyi)
-//
-//                .execute(new SimpleCallBack<List<NewsBean>>() {
-//                    @Override
-//                    public void onError(ApiException e) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(List<NewsBean> newsBeans) {
-//
-//                    }
-//                });
+
 //        EasyHttp.get(HttpApi.api_news)
 //                .baseUrl(HttpApi.base_url)
 //                .params("type","0")

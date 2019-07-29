@@ -102,6 +102,14 @@ public class MainActivity extends BaseActivity {
                     String url4 = "http://m.yinyuetai.com";
                     WebActivity.start(this, url4);
                     break;
+                case R.id.web_video5:
+                    String url5 = "http://www.80ys.net";
+                    WebActivity.start(this, url5);
+                    break;
+                case R.id.web_video6:
+                    String url6 = "http://70bt.cn/";
+                    WebActivity.start(this, url6);
+                    break;
             }
             return false;
         });
