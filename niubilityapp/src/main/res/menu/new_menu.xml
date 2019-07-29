@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group>
 
         <item
             android:id="@+id/play"
@@ -10,35 +10,46 @@
             android:id="@+id/night"
             android:icon="@mipmap/ic_launcher_round"
             android:title="黑白模式切换" />
-
-
-    </group>
-
-    <group android:checkableBehavior="single" android:menuCategory="secondary">
-        <item
-            android:id="@+id/web_video1"
-            android:icon="@mipmap/ic_launcher_round"
-            android:title="二猫影院" />
-        <item
-            android:id="@+id/web_video2"
-            android:icon="@mipmap/ic_launcher_round"
-            android:title="4K屋" />
-        <item
-            android:id="@+id/web_video3"
-            android:icon="@mipmap/ic_launcher_round"
-            android:title="泡泡影视" />
-
         <item
             android:id="@+id/web_video4"
             android:icon="@mipmap/ic_launcher_round"
             android:title="音悦台" />
-        <item
-            android:id="@+id/web_video5"
-            android:icon="@mipmap/ic_launcher_round"
-            android:title="80影视" />
-        <item
-            android:id="@+id/web_video6"
-            android:icon="@mipmap/ic_launcher_round"
-            android:title="全民电影天堂" />
+
     </group>
+    <item android:title="电影专栏">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/web_video1"
+                    android:icon="@mipmap/ic_launcher_round"
+                    android:title="二猫影院" />
+                <item
+                    android:id="@+id/web_video2"
+                    android:icon="@mipmap/ic_launcher_round"
+                    android:title="4K屋" />
+                <item
+                    android:id="@+id/web_video3"
+                    android:icon="@mipmap/ic_launcher_round"
+                    android:title="泡泡影视" />
+
+                <item
+                    android:id="@+id/web_video5"
+                    android:icon="@mipmap/ic_launcher_round"
+                    android:title="80影视" />
+                <item
+                    android:id="@+id/web_video6"
+                    android:icon="@mipmap/ic_launcher_round"
+                    android:title="全民电影天堂" />
+                <item
+                    android:id="@+id/web_video7"
+                    android:icon="@mipmap/ic_launcher_round"
+                    android:title="自助视频解析观看所有视频网站视频" />
+                <item
+                    android:id="@+id/web_video8"
+                    android:icon="@mipmap/ic_launcher_round"
+                    android:title="新视觉影院" />
+            </group>
+        </menu>
+    </item>
+
 </menu>

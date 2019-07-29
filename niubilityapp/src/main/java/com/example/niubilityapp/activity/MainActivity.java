@@ -110,6 +110,15 @@ public class MainActivity extends BaseActivity {
                     String url6 = "http://70bt.cn/";
                     WebActivity.start(this, url6);
                     break;
+                case R.id.web_video7:
+                    //http://so.448521.com/
+                    String url7 = "http://so.448521.com";
+                    WebActivity.start(this, url7);
+                    break;
+                case R.id.web_video8:
+                    String url8 = "http://www.dy6080.com";
+                    WebActivity.start(this, url8);
+                    break;
             }
             return false;
         });
