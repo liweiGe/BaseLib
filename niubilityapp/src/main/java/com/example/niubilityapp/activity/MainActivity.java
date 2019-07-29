@@ -2,7 +2,9 @@ package com.example.niubilityapp.activity;
 
 import android.app.UiModeManager;
 import android.content.Context;
+import android.content.Intent;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
@@ -11,6 +13,10 @@ import com.example.niubilityapp.R;
 import com.example.niubilityapp.fragment.CCTVFragment;
 import com.example.niubilityapp.fragment.CityTvFragment;
 import com.example.niubilityapp.fragment.OtherTvFragment;
+import com.example.niubilityapp.live_TV.IntentKeys;
+import com.example.niubilityapp.live_TV.LivePlayerActivity;
+import com.example.niubilityapp.live_TV.LiveUrl;
+import com.example.niubilityapp.live_TV.VideoBean;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.kongzue.baseframework.base.BaseActivity;
@@ -29,18 +35,69 @@ public class MainActivity extends BaseActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     private NavigationView navigationView;
+    private SearchView searchView;
 
     @Override
     public void initViews() {
         tabLayout = findViewById(R.id.tl_tabs);
         viewPager = findViewById(R.id.vp_content);
         navigationView = findViewById(R.id.left_layout);
+        searchView = findViewById(R.id.search_view);
 
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                goSearch(query);
+                searchView.clearFocus();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
     }
+
+    private void goSearch(String query) {
+        VideoBean hasTv = null;
+        for (VideoBean videoBean : list) {
+            if (videoBean.getTitle().contains(query)) {
+                hasTv = videoBean;
+            }
+        }
+        if (hasTv != null) {
+            toastS("有该频道,立马跳转播放");
+            VideoBean finalHasTv = hasTv;
+            searchView.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    skipLive(finalHasTv);
+                }
+            }, 1000);
+        } else {
+            toastS("未收录该频道");
+        }
+    }
+
+    private void skipLive(VideoBean videoBean) {
+        Intent intent = new Intent(this, LivePlayerActivity.class);
+        intent.putExtra(IntentKeys.URL, videoBean.getUrl());
+        intent.putExtra(IntentKeys.IS_LIVE, true);
+        intent.putExtra(IntentKeys.TITLE, "直播");
+        startActivity(intent);
+    }
+
+    ArrayList<VideoBean> list = new ArrayList<>(128);
 
     @Override
     public void initDatas(JumpParameter paramer) {
-
+        List<VideoBean> cctvVideoList = LiveUrl.getCCTVVideoList();
+        list.addAll(cctvVideoList);
+        List<VideoBean> cityVideoList = LiveUrl.getCityVideoList();
+        list.addAll(cityVideoList);
+        List<VideoBean> otherVideoList = LiveUrl.getOtherVideoList();
+        list.addAll(otherVideoList);
     }
 
     @Override

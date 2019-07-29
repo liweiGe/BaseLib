@@ -11,6 +11,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="match_parent"
+            app:queryHint="频道搜索"
+            android:layout_height="@dimen/dp_40" />
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tl_tabs"
             android:layout_width="match_parent"
