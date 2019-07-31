@@ -3,6 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
-    <color name="rv_item_bg">#B575BF</color>
+    <color name="rv_item_bg">#D1D8D6</color>
     <color name="search_bg">#F1E4E4</color>
+    <color name="item_text">#008577</color>
 </resources>

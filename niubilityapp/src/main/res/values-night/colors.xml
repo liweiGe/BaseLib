@@ -3,5 +3,6 @@
     <color name="colorPrimary">#E5B11A</color>
     <color name="colorPrimaryDark">#724755</color>
     <color name="colorAccent">#FFEB3B</color>
-    <color name="rv_item_bg">#748E54</color>
+    <color name="rv_item_bg">#E0000000</color>
+    <color name="item_text">#E7FFFFFF</color>
 </resources>

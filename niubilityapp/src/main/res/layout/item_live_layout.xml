@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-android:background="@color/rv_item_bg"
+    android:background="@color/rv_item_bg"
     android:orientation="vertical">
 
     <TextView
@@ -11,7 +11,7 @@ android:background="@color/rv_item_bg"
         android:layout_height="50dp"
         android:gravity="center"
         android:text="电视直播频道"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/item_text"
         android:textSize="20dp" />
 
     <View
