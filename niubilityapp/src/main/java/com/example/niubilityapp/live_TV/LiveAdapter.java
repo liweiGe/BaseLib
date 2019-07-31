@@ -38,8 +38,14 @@ public class LiveAdapter extends RecyclerView.Adapter<LiveAdapter.VideoHolder> {
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, LivePlayerActivity.class);
             intent.putExtra(IntentKeys.URL, videoBean.getUrl());
-            intent.putExtra(IntentKeys.IS_LIVE, true);
-            intent.putExtra(IntentKeys.TITLE, "直播");
+            if (videoBean.getTitle().startsWith("点播")){
+                intent.putExtra(IntentKeys.IS_LIVE, false);
+                intent.putExtra(IntentKeys.TITLE, "点播");
+            }else {
+                intent.putExtra(IntentKeys.IS_LIVE, true);
+                intent.putExtra(IntentKeys.TITLE, "直播");
+            }
+
             context.startActivity(intent);
         });
     }

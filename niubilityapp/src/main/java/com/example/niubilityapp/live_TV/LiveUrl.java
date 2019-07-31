@@ -101,6 +101,9 @@ public final class LiveUrl {
         videoList.add(new VideoBean("CCTV-14少儿", "http://ivi.bupt.edu.cn/hls/cctv14.m3u8"));
         videoList.add(new VideoBean("CCTV-15音乐", "http://ivi.bupt.edu.cn/hls/cctv15.m3u8"));
         videoList.add(new VideoBean("CCTV-NEWS", "http://ivi.bupt.edu.cn/hls/cctv16.m3u8"));
+        videoList.add(new VideoBean("点播1", "https://bili.meijuzuida.com/20190717/20609_8e0f2252/800k/hls/index.m3u8"));
+        videoList.add(new VideoBean("点播2", "https://zouyu.laohu-zuida.com/20170530/4u64GjCm/index.m3u8"));
+        videoList.add(new VideoBean("点播3", "https://cn2.zuidadianying.com/20190720/9aRt39AL/index.m3u8"));
 
         return videoList;
     }
