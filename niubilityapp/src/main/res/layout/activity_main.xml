@@ -6,16 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search_view"
-            android:layout_width="match_parent"
-            app:queryHint="频道搜索"
-            android:layout_height="@dimen/dp_40" />
+        android:layout_height="match_parent">
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tl_tabs"
@@ -25,8 +18,19 @@
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:layout_below="@id/tl_tabs" />
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search_view"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_40"
+            android:background="@drawable/shape_search_bg"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="50dp"
+            app:queryHint="频道搜索" />
+    </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/left_layout"
