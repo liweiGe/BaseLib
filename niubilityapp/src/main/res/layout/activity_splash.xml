@@ -1,46 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+
+<!--<Button--><!--android:id="@+id/button"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:layout_marginTop="32dp"--><!--android:onClick="httpTest"--><!--android:text="接口测试"--><!--app:layout_constraintHorizontal_bias="0.498"--><!--app:layout_constraintLeft_toLeftOf="parent"--><!--app:layout_constraintRight_toRightOf="parent"--><!--app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--<Button--><!--android:id="@+id/button2"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:layout_marginTop="64dp"--><!--android:onClick="goMain"--><!--android:text="跳转主页"--><!--app:layout_constraintEnd_toEndOf="@+id/button"-->
+
+<!--app:layout_constraintStart_toStartOf="@+id/button"--><!--app:layout_constraintTop_toBottomOf="@+id/button" />-->
+
+<!--<Button--><!--android:id="@+id/button3"--><!--android:layout_width="wrap_content"--><!--android:layout_height="wrap_content"--><!--android:layout_marginTop="80dp"--><!--android:onClick="changeSkin"--><!--android:text="换肤"--><!--app:layout_constraintEnd_toEndOf="@+id/button2"--><!--app:layout_constraintHorizontal_bias="0.0"--><!--app:layout_constraintStart_toStartOf="@+id/button2"--><!--app:layout_constraintTop_toBottomOf="@+id/button2" />-->
+
+<SlidingDrawer xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/rv_item_bg"
-    tools:context=".activity.SplashActivity">
+    android:content="@id/content"
+    android:handle="@id/handle"
+    android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/button"
+    <ImageView
+        android:id="@+id/handle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:onClick="httpTest"
-        android:text="接口测试"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@mipmap/ic_launcher" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:onClick="goMain"
-        android:text="跳转主页"
-        app:layout_constraintEnd_toEndOf="@+id/button"
-
-        app:layout_constraintStart_toStartOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:text="换肤"
-        android:onClick="changeSkin"
-        app:layout_constraintEnd_toEndOf="@+id/button2"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:text="weigekasdsajk"
+        android:textColor="@color/black"
+        android:textSize="60dp" />
+</SlidingDrawer>
