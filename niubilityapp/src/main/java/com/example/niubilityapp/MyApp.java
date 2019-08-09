@@ -26,5 +26,6 @@ public class MyApp extends Application {
 //                .setCacheMode(CacheMode.CACHEANDREMOTE) //先使用缓存，不管是否存在，仍然请求网络，会回调两次
                 .setCertificates();
 //        SmartSwipeBack.activityDoorBack(this, null);    //侧滑百叶窗样式关闭activity
+//        Vitamio.isInitialized(getApplicationContext());
     }
 }

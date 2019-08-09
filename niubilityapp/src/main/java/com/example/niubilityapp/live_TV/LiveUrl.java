@@ -75,10 +75,10 @@ public final class LiveUrl {
         videoList.add(new VideoBean("漫威电影", "http://tx.hls.huya.com/huyalive/30765679-2504742278-10757786168918540288-3049003128-10057-A-0-1.m3u8"));
         videoList.add(new VideoBean("电影-超级英雄", "https://aldirect.hls.huya.com/huyalive/30765679-2504742278-10757786168918540288-3049003128-10057-A-0-1_1200.m3u8"));
         videoList.add(new VideoBean("韩国-热舞", "http://aldirect.hls.huya.com/huyalive/30765679-2533159102-10879835498654728192-3049003136-10057-A-0-1_1200.m3u8"));
-        videoList.add(new VideoBean("高清影院1", "http://dlhls.cdn.zhanqi.tv/zqlive/7032_0s2qn.m3u8"));
-        videoList.add(new VideoBean("高清影院2", "http://dlhls.cdn.zhanqi.tv/zqlive/35349_iXsXw.m3u8"));
-        videoList.add(new VideoBean("高清影院3", "http://dlhls.cdn.zhanqi.tv/zqlive/53346_ESoth.m3u8"));
-        videoList.add(new VideoBean("高清影院4", "http://dlhls.cdn.zhanqi.tv/zqlive/182325_z3jRr.m3u8"));
+//        videoList.add(new VideoBean("高清影院1", "http://dlhls.cdn.zhanqi.tv/zqlive/7032_0s2qn.m3u8"));
+//        videoList.add(new VideoBean("高清影院2", "http://dlhls.cdn.zhanqi.tv/zqlive/35349_iXsXw.m3u8"));
+//        videoList.add(new VideoBean("高清影院3", "http://dlhls.cdn.zhanqi.tv/zqlive/53346_ESoth.m3u8"));
+//        videoList.add(new VideoBean("高清影院4", "http://dlhls.cdn.zhanqi.tv/zqlive/182325_z3jRr.m3u8"));
         return videoList;
     }
 
