@@ -1,5 +1,7 @@
 package com.example.niubilityapp.activity;
 
+import android.app.UiModeManager;
+import android.content.Context;
 import android.content.Intent;
 
 import androidx.appcompat.widget.SearchView;
@@ -133,14 +135,13 @@ public class MainActivity extends BaseActivity {
                     jump(EntertainmentActivity.class);
                     break;
                 case R.id.night:
-                    ShouYJActivity.start(this);
-//                    final UiModeManager uiModeManager = (UiModeManager) getSystemService(Context.UI_MODE_SERVICE);
-//                    int nightMode = uiModeManager.getNightMode();
-//                    if (nightMode == UiModeManager.MODE_NIGHT_YES) {
-//                        uiModeManager.setNightMode(UiModeManager.MODE_NIGHT_NO);
-//                    } else {
-//                        uiModeManager.setNightMode(UiModeManager.MODE_NIGHT_YES);
-//                    }
+                    final UiModeManager uiModeManager = (UiModeManager) getSystemService(Context.UI_MODE_SERVICE);
+                    int nightMode = uiModeManager.getNightMode();
+                    if (nightMode == UiModeManager.MODE_NIGHT_YES) {
+                        uiModeManager.setNightMode(UiModeManager.MODE_NIGHT_NO);
+                    } else {
+                        uiModeManager.setNightMode(UiModeManager.MODE_NIGHT_YES);
+                    }
                     break;
                 case R.id.web_video1:
                     String url1 = "http://www.2myy.com";

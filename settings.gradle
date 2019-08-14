@@ -1,1 +1,1 @@
-include ':niubilityapp', ':rxeasyhttp', ':baseframework', ':myeyedemo', ':vitamio'
+include ':niubilityapp', ':rxeasyhttp', ':baseframework', ':myeyedemo'
