@@ -12,4 +12,4 @@ webview库,bugly库,eventbus库,屏幕适配库(autosize),轮播图(banner库)..
 另外还有base基类库
 
 -----------------------这是规划(后续一步步来)--------------------
-![Image](/mm_facetoface_collect_qrcode_1566206022594.png)
+![Image](/WX20190819-171812@2x.png)
