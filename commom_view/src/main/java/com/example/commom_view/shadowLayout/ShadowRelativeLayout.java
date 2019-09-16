@@ -1,4 +1,4 @@
-package com.caotu.duanzhi.view.shadowLayout;
+package com.example.commom_view.shadowLayout;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -6,9 +6,6 @@ import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
 import androidx.annotation.ColorInt;
-
-import com.example.commom_view.shadowLayout.ILayout;
-import com.example.commom_view.shadowLayout.LayoutHelper;
 
 /**
  * @author limuyang
