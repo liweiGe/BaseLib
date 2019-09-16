@@ -178,7 +178,6 @@ public class LivePlayerActivity extends AppCompatActivity {
         instance.browse(ILelinkServiceManager.TYPE_ALL);
         dialog1 = new AlertDialog.Builder(this)
                 .setMessage("正在搜索")
-                .setCancelable(false)
                 .show();
         dialog1.setOnDismissListener(dialog -> instance.stopBrowse());
     }

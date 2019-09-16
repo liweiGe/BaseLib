@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ShadowLayout">
+        <attr name="l_radius" />
+        <attr name="l_borderColor" />
+        <attr name="l_borderWidth" />
+        <attr name="l_outerNormalColor" />
+        <attr name="l_hideRadiusSide" />
+        <attr name="l_showBorderOnlyBeforeL" />
+        <attr name="l_shadowElevation" />
+        <attr name="l_shadowAlpha" />
+        <attr name="l_outlineExcludePadding" />
+    </declare-styleable>
+
+    <declare-styleable name="ShadowLinearLayout">
+        <attr name="l_radius" />
+        <attr name="l_borderColor" />
+        <attr name="l_borderWidth" />
+        <attr name="l_outerNormalColor" />
+        <attr name="l_hideRadiusSide" />
+        <attr name="l_showBorderOnlyBeforeL" />
+        <attr name="l_shadowElevation" />
+        <!--<attr name="l_useThemeGeneralShadowElevation" format="boolean"/>-->
+        <attr name="l_shadowAlpha" />
+        <attr name="l_outlineExcludePadding" />
+
+    </declare-styleable>
+
+    <declare-styleable name="ShadowRelativeLayout">
+        <attr name="l_radius" />
+        <attr name="l_borderColor" />
+        <attr name="l_borderWidth" />
+        <attr name="l_outerNormalColor" />
+        <attr name="l_hideRadiusSide" />
+        <attr name="l_showBorderOnlyBeforeL" />
+        <attr name="l_shadowElevation" />
+        <attr name="l_shadowAlpha" />
+        <attr name="l_outlineExcludePadding" />
+    </declare-styleable>
+
+    <declare-styleable name="ShadowConstraintLayout">
+        <attr name="l_radius" />
+        <attr name="l_borderColor" />
+        <attr name="l_borderWidth" />
+        <attr name="l_outerNormalColor" />
+        <attr name="l_hideRadiusSide" />
+        <attr name="l_showBorderOnlyBeforeL" />
+        <attr name="l_shadowElevation" />
+        <attr name="l_shadowAlpha" />
+        <attr name="l_outlineExcludePadding" />
+    </declare-styleable>
+
+    <!--切换状态的view-->
+    <declare-styleable name="StateView">
+        <attr name="state_content" format="reference" />
+        <attr name="state_error" format="reference" />
+        <attr name="state_empty" format="reference" />
+        <attr name="state_loading" format="reference" />
+        <attr name="state_current" format="enum">
+            <enum name="content" value="0" />
+            <enum name="loading" value="1" />
+            <enum name="error" value="2" />
+            <enum name="empty" value="3" />
+            <enum name="content_loading" value="4" />
+        </attr>
+    </declare-styleable>
+</resources>
