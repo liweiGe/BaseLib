@@ -11,8 +11,3 @@
 - 列表+下拉刷新(BaseRecyclerViewAdapterHelper+SmartRefreshLayout)
 - webview库,bugly库,eventbus库,屏幕适配库(autosize),轮播图(banner库).....
 - 另外还有base基类库
-
----
-###微信捐赠(频道找起来真的麻烦),也欢迎有道之士添加
-
-![Image](/WX20190819-172042@2x.png)
