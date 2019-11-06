@@ -1,4 +1,4 @@
-package com.kongzue.baseframework.StickyRvHeader;
+package com.example.commom_view.StickyRvHeader;
 
 import android.graphics.Color;
 import android.graphics.Paint;
