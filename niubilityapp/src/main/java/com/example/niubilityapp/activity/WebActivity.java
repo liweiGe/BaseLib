@@ -24,11 +24,13 @@ import com.just.agentweb.DefaultWebClient;
 import com.kongzue.baseframework.base.BaseActivity;
 import com.kongzue.baseframework.interfaces.DarkStatusBarTheme;
 import com.kongzue.baseframework.interfaces.Layout;
+import com.kongzue.baseframework.interfaces.SwipeBack;
 import com.kongzue.baseframework.util.activityParam.JumpParameter;
 
 @Layout(R.layout.activity_web)
 
 @DarkStatusBarTheme(true)
+@SwipeBack(true)
 public class WebActivity extends BaseActivity {
 
     private AgentWeb mAgentWeb;
@@ -77,13 +79,13 @@ public class WebActivity extends BaseActivity {
         @Nullable
         @Override
         public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-            Log.i("@@@@", "url : "+url);
+            Log.i("@@@@", "url : " + url);
             //做广告拦截，ADFIlterTool 为广告拦截工具类
-            if (!AdBlocker.hasAd(getBaseContext(),url)){
+            if (!AdBlocker.hasAd(getBaseContext(), url)) {
                 return super.shouldInterceptRequest(view, url);
-            }else {
+            } else {
                 Log.i("@@@@", "拦截");
-                return new WebResourceResponse(null,null,null);
+                return new WebResourceResponse(null, null, null);
             }
         }
 
