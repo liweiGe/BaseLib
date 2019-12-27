@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.niubilityapp">
 
+    <!-- To access Google+ APIs: -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="com.android.launcher.permission.WRITE_SETTINGS" />
@@ -13,9 +14,6 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" /> <!-- mirror -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-<!--    <uses-permission android:name="android.permission.CAPTURE_AUDIO_OUTPUT" />-->
-<!--    <uses-permission android:name="android.permission.CAPTURE_VIDEO_OUTPUT" />-->
-<!--    <uses-permission android:name="android.permission.CAPTURE_SECURE_VIDEO_OUTPUT" />-->
 
     <application
         android:name=".MyApp"
@@ -27,7 +25,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.SplashActivity"></activity>
+        <activity android:name=".activity.SplashActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

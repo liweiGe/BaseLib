@@ -1,7 +1,8 @@
 package com.kongzue.baseframework.asyncChain.lifecycler.base;
 
 
-import android.app.Activity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 /**
  * 生命周期状态的基类
@@ -12,8 +13,7 @@ import android.app.Activity;
 public interface AsyncChainLifeCycleListener {
 
     /**
-     * 当 {@link android.app.Fragment#onDestroy()}} 或者 {@link
-     * Activity#onDestroy()}  的时候执行，表示依附的对象销毁了
+     * 当 {@link Fragment#onDestroy()}} 或者 {@link AppCompatActivity#onDestroy()}  的时候执行，表示依附的对象销毁了
      *
      * @param lifeCycle 被销毁的生命周期类
      */

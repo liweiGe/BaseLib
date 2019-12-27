@@ -9,7 +9,6 @@ import java.util.UUID;
  * @date :  2019/7/22
  **/
 public abstract class AsyncChainRunnable<LAST_RESULT, NEXT_RESULT> {
-    private static final String TAG = "AsyncChainRunnable";
     protected String runId = UUID.randomUUID().toString();
     /**
      * 异步行为的控制器

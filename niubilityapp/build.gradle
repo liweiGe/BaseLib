@@ -33,8 +33,8 @@ dependencies {
 //    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta3'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0-rc01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta4'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha01'
     //# 必选，可兼容市面上绝大部分设备
     implementation 'com.github.dueeeke.dkplayer:dkplayer-java:2.5.7'
     implementation 'com.github.dueeeke.dkplayer:dkplayer-armv7a:2.5.7'
@@ -43,7 +43,7 @@ dependencies {
     //网络请求 https://github.com/zhou-you/RxEasyHttp
 //    implementation 'com.zhouyou:rxeasyhttp:2.1.5'
     implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.google.android.material:material:1.2.0-alpha01'
+    implementation 'com.google.android.material:material:1.2.0-alpha03'
     implementation project(path: ':rxeasyhttp')
     implementation project(path: ':baseframework')
     implementation 'com.facebook.stetho:stetho:1.5.1'

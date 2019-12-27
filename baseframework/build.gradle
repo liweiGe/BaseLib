@@ -33,5 +33,5 @@ dependencies {
     api 'com.just.agentweb:agentweb:4.0.2'
     api 'androidx.recyclerview:recyclerview:1.1.0'
     api 'com.google.code.gson:gson:2.8.6'
-    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.0.0'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
 }
