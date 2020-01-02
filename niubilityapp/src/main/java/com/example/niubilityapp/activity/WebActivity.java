@@ -3,21 +3,11 @@ package com.example.niubilityapp.activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.http.SslError;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
-import android.webkit.SslErrorHandler;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
-import androidx.annotation.Nullable;
-
-import com.example.niubilityapp.AdBlocker;
 import com.example.niubilityapp.R;
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.DefaultWebClient;
@@ -62,7 +52,6 @@ public class WebActivity extends BaseActivity {
                 .useDefaultIndicator()
                 .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)
 //                .setWebChromeClient(mWebChromeClient)
-                .setWebViewClient(client)
                 .createAgentWeb()
                 .ready()
                 .go(url);
@@ -74,32 +63,7 @@ public class WebActivity extends BaseActivity {
     }
 
 
-    WebViewClient client = new WebViewClient() {
 
-        @Nullable
-        @Override
-        public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-            Log.i("@@@@", "url : " + url);
-            //做广告拦截，ADFIlterTool 为广告拦截工具类
-            if (!AdBlocker.hasAd(getBaseContext(), url)) {
-                return super.shouldInterceptRequest(view, url);
-            } else {
-                Log.i("@@@@", "拦截");
-                return new WebResourceResponse(null, null, null);
-            }
-        }
-
-        @Override
-        public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-            handler.proceed();
-//            super.onReceivedSslError(view, handler, error);
-        }
-
-        @Override
-        public void onReceivedHttpError(WebView view, WebResourceRequest request, WebResourceResponse errorResponse) {
-            super.onReceivedHttpError(view, request, errorResponse);
-        }
-    };
 
     @Override
     public void initDatas(JumpParameter paramer) {
