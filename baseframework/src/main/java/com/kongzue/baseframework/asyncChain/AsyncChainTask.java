@@ -1,4 +1,4 @@
-package com.kongzue.baseframework.asyncChain.core;
+package com.kongzue.baseframework.asyncChain;
 
 /**
  * 异步操作Runnable的行为控制类
@@ -38,7 +38,11 @@ public class AsyncChainTask<LAST_RESULT, NEXT_RESULT> {
      * 异步操作结束了，整个异步链停止，即使还有后续的异步操作，也不会执行了
      */
     public void onComplete() {
-        AsyncChainManager.getInstance().onComplete(this);
+        AsyncChainManager.getInstance().onComplete();
+    }
+
+    public void allComplete() {
+        AsyncChainManager.getInstance().onCompleteAll(this);
     }
 
     /**

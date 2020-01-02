@@ -1,4 +1,4 @@
-package com.kongzue.baseframework.asyncChain.core;
+package com.kongzue.baseframework.asyncChain;
 
 import java.util.UUID;
 
@@ -38,12 +38,5 @@ public abstract class AsyncChainRunnable<LAST_RESULT, NEXT_RESULT> {
 
     void setAsyncChainTask(AsyncChainTask mAsyncChainTask) {
         this.mAsyncChainTask = mAsyncChainTask;
-    }
-
-    public static class DefaultAsyncChainRunnable extends AsyncChainRunnable {
-        @Override
-        public void run(AsyncChainTask task) throws Exception {
-            task.onNext(task.getLastResult());
-        }
     }
 }

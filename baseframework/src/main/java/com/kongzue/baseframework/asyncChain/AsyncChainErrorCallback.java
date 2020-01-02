@@ -1,11 +1,10 @@
-package com.kongzue.baseframework.asyncChain.core;
+package com.kongzue.baseframework.asyncChain;
 
 /**
  * 异步操作执行错误的回调接口，用于对错误进行处理，一旦报错，异步链就停止运行了，不会继续下去。
  *
- * @author :  luoming    luomingbear@163.com
- * @date :  2019/8/5
  **/
+
 public abstract class AsyncChainErrorCallback {
     /**
      * 错误回调执行的线程{@link AsyncChainRunnableWrapper#ORIGINAL}/{@link AsyncChainRunnableWrapper#MAIN}/{@link AsyncChainRunnableWrapper#WORK}

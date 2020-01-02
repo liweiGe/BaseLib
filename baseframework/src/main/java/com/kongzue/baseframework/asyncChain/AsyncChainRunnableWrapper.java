@@ -1,4 +1,4 @@
-package com.kongzue.baseframework.asyncChain.core;
+package com.kongzue.baseframework.asyncChain;
 
 /**
  * AsyncChainRunnable 的包装类
