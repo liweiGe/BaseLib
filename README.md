@@ -12,10 +12,9 @@
 - webview库,bugly库,eventbus库,屏幕适配库(autosize),轮播图(banner库).....
 - 另外还有base基类库
 
-###新添加一个同步串行和异步并发的操作
+---
 (```)
- //异步并发
-  AsyncChainLink.getInstance()
+  AsyncChainLink.getInstance()   //异步多并发操作
                 .withWork(new AsyncChainRunnable() {
                     @Override
                     public void run(AsyncChainTask task) throws Exception {
@@ -50,8 +49,8 @@
 
 
 (```)
-//同步执行多个任务代码
-        AsyncChainLink.getInstance()
+
+        AsyncChainLink.getInstance()    //同步任务
                 .with(new AsyncChainRunnable() {
                     @Override
                     public void run(AsyncChainTask task) throws Exception {
