@@ -12,9 +12,9 @@
 - webview库,bugly库,eventbus库,屏幕适配库(autosize),轮播图(banner库).....
 - 另外还有base基类库
 
----
-(```)
-  AsyncChainLink.getInstance()   //异步多并发操作
+
+```
+    AsyncChainLink.getInstance()   //异步并发任务操作
                 .withWork(new AsyncChainRunnable() {
                     @Override
                     public void run(AsyncChainTask task) throws Exception {
@@ -44,40 +44,36 @@
                     public void allComplete() {
                         Log.i("AsyncChain", "allComplete: 全部完成");
                     }
-                });         
-(```)
-
-
-(```)
-
-        AsyncChainLink.getInstance()    //同步任务
-                .with(new AsyncChainRunnable() {
-                    @Override
-                    public void run(AsyncChainTask task) throws Exception {
-                        Log.i("AsyncChain", "run: 1");
-                        task.onNext("结果一");
-                    }
-                })
-                .with(new AsyncChainRunnable() {
-                    @Override
-                    public void run(AsyncChainTask task) throws Exception {
-                        int i = 10 / 0;
-                        Log.i("AsyncChain", "run: 2" + i);
-
-                    }
-                })
-                .with(new AsyncChainRunnable() {
-                    @Override
-                    public void run(AsyncChainTask task) throws Exception {
-                        Log.i("AsyncChain", "run: 3" + task.getLastResult());
-                        task.onComplete();
-                    }
-                })
-                .error(new AsyncChainErrorCallback() {
-                    @Override
-                    public void error(AsyncChainError error) throws Exception {
-                        Log.i("AsyncChain", "error: " + error.toString());
-                    }
-                })
-                .go();
-(```)
+                });   
+                
+         AsyncChainLink.getInstance()   //同步串行任务
+                                .with(new AsyncChainRunnable() {
+                                    @Override
+                                    public void run(AsyncChainTask task) throws Exception {
+                                        Log.i("AsyncChain", "run: 1");
+                                        task.onNext("结果一");
+                                    }
+                                })
+                                .with(new AsyncChainRunnable() {
+                                    @Override
+                                    public void run(AsyncChainTask task) throws Exception {
+                                        int i = 10 / 0;
+                                        Log.i("AsyncChain", "run: 2" + i);
+                
+                                    }
+                                })
+                                .with(new AsyncChainRunnable() {
+                                    @Override
+                                    public void run(AsyncChainTask task) throws Exception {
+                                        Log.i("AsyncChain", "run: 3" + task.getLastResult());
+                                        task.onComplete();
+                                    }
+                                })
+                                .error(new AsyncChainErrorCallback() {
+                                    @Override
+                                    public void error(AsyncChainError error) throws Exception {
+                                        Log.i("AsyncChain", "error: " + error.toString());
+                                    }
+                                })
+                                .go();      
+```
