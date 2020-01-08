@@ -9,10 +9,10 @@ import com.example.niubilityapp.fragment.JokeFragment;
 import com.example.niubilityapp.fragment.NewsFragment;
 import com.example.niubilityapp.fragment.ZhiHuFragment;
 import com.google.android.material.tabs.TabLayout;
-import com.kongzue.baseframework.base.BaseActivity;
+import com.kongzue.baseframework.BaseActivity;
 import com.kongzue.baseframework.interfaces.DarkStatusBarTheme;
 import com.kongzue.baseframework.interfaces.Layout;
-import com.kongzue.baseframework.util.activityParam.JumpParameter;
+import com.kongzue.baseframework.other.JumpParameter;
 
 import java.util.ArrayList;
 import java.util.List;

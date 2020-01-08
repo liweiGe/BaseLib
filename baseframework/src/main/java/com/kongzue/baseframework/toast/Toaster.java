@@ -3,10 +3,11 @@ package com.kongzue.baseframework.toast;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
-import androidx.core.app.NotificationManagerCompat;
 import android.widget.Toast;
 
-import static com.kongzue.baseframework.base.BaseActivity.isMIUI;
+import androidx.core.app.NotificationManagerCompat;
+
+import static com.kongzue.baseframework.BaseActivity.isMIUI;
 
 public class Toaster {
     
@@ -14,13 +15,15 @@ public class Toaster {
     public static int DURATION = Toast.LENGTH_SHORT;
     public static BaseToast nowToast;
     
-    public static BaseToast build(Context context, int DURATION) {
-        Toaster.DURATION = DURATION;
+    public static BaseToast build(Context context, int duration) {
+        Toaster.DURATION = duration;
         return build(context);
     }
     
     public static BaseToast build(Context context) {
-        if (context == null) return null;
+        if (context == null) {
+            return null;
+        }
         if (NotificationManagerCompat.from(context).areNotificationsEnabled() || isAndroidO() || isMIUI()) {
             //若开启了通知权限
             return new SystemToast(context);

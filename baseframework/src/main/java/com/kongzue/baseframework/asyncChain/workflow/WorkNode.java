@@ -1,4 +1,4 @@
-package com.kongzue.baseframework.workflow;
+package com.kongzue.baseframework.asyncChain.workflow;
 
 public class WorkNode implements Node {
     /**

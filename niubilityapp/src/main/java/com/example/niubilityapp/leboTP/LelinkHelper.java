@@ -6,7 +6,6 @@ import android.os.Looper;
 import android.os.Message;
 import android.text.TextUtils;
 
-import com.example.niubilityapp.activity.MainActivity;
 import com.hpplay.sdk.source.api.IConnectListener;
 import com.hpplay.sdk.source.api.ILelinkPlayerListener;
 import com.hpplay.sdk.source.api.InteractiveAdListener;
@@ -219,10 +218,7 @@ public class LelinkHelper {
         mAllCast.setOption(opt, values);
     }
 
-    public void startMirror(MainActivity activity, LelinkServiceInfo info, int resolutionLevel,
-                            int bitrateLevel, boolean audioEnable, String screencode) {
-        mAllCast.startMirror(activity, info, resolutionLevel, bitrateLevel, audioEnable, screencode);
-    }
+
 
     public void startScreenShot() {
         mAllCast.startScreenShot();

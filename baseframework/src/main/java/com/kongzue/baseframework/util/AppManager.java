@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 
-import com.kongzue.baseframework.base.BaseActivity;
+import com.kongzue.baseframework.BaseActivity;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,12 +13,15 @@ import java.util.List;
 import java.util.Stack;
 
 /**
+ * @author xiaohaibin
  * @link https://xiaohaibin.github.io/
  * @email： xhb_199409@163.com
  * @github: https://github.com/xiaohaibin
  * @describe: Activity管理工具类
  */
 public class AppManager {
+    
+    private static OnActivityStatusChangeListener onActivityStatusChangeListener;
     private static Stack<BaseActivity> activityStack;
     private static AppManager instance;
     
@@ -43,6 +46,9 @@ public class AppManager {
             activityStack = new Stack<BaseActivity>();
         }
         activityStack.add(activity);
+        if (onActivityStatusChangeListener != null) {
+            onActivityStatusChangeListener.onActivityCreate(activity);
+        }
     }
     
     /**
@@ -50,8 +56,9 @@ public class AppManager {
      */
     public BaseActivity currentActivity() {
         BaseActivity activity = null;
-        if (!activityStack.empty())
+        if (!activityStack.empty()) {
             activity = activityStack.lastElement();
+        }
         return activity;
     }
     
@@ -68,7 +75,9 @@ public class AppManager {
      */
     public void killActivity(BaseActivity activity) {
         if (activity != null) {
-            activity.finishActivity();
+            if (activity != null) {
+                activity.finishActivity();
+            }
             activityStack.remove(activity);
             activity = null;
         }
@@ -82,7 +91,7 @@ public class AppManager {
         BaseActivity temp = null;
         while (iterator.hasNext()) {
             BaseActivity activity = iterator.next();
-            if (activity.getClass().equals(cls)) {
+            if (activity != null && activity.getClass().equals(cls)) {
                 temp = activity;
             }
         }
@@ -108,20 +117,34 @@ public class AppManager {
      * 退出应用程序
      */
     @SuppressLint("MissingPermission")
-    public void AppExit(Context context) {
+    public void exit(Context context) {
         try {
             killAllActivity();
-            android.app.ActivityManager activityMgr = (android.app.ActivityManager) context
-                    .getSystemService(Context.ACTIVITY_SERVICE);
+            android.app.ActivityManager activityMgr = (android.app.ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
             activityMgr.killBackgroundProcesses(context.getPackageName());
             System.exit(0);
         } catch (Exception e) {
         }
     }
     
+    @Deprecated
+    public void AppExit(Context context) {
+        exit(context);
+    }
+    
     public void deleteActivity(BaseActivity activity) {
-        if (activity != null) {
-            activityStack.remove(activity);
+        try{
+            if (activity != null) {
+                activityStack.remove(activity);
+                if (onActivityStatusChangeListener != null) {
+                    onActivityStatusChangeListener.onActivityDestroy(activity);
+                    if (activityStack.isEmpty()) {
+                        onActivityStatusChangeListener.onAllActivityClose();
+                    }
+                }
+            }
+        }catch (Exception e){
+        
         }
     }
     
@@ -133,14 +156,18 @@ public class AppManager {
     public void killOtherActivityExclude(Class<?>... cls) {
         List<Class<?>> excludeList = Arrays.asList(cls);
         if (activityStack != null) {
-            Iterator<BaseActivity> iterator = activityStack.iterator();
+            Stack<BaseActivity> activityStackCache = new Stack<>();
+            activityStackCache.addAll(activityStack);
+            Iterator<BaseActivity> iterator = activityStackCache.iterator();
             while (iterator.hasNext()) {
-                Activity activity = iterator.next();
-                if (excludeList.contains(activity.getClass())) {
+                BaseActivity activity = iterator.next();
+                if (activity != null && excludeList.contains(activity.getClass())) {
                     continue;
                 }
                 iterator.remove();
-                activity.finish();
+                if (activity != null) {
+                    activity.finish();
+                }
             }
         }
     }
@@ -159,7 +186,7 @@ public class AppManager {
             BaseActivity temp = null;
             while (iterator.hasNext()) {
                 BaseActivity activity = iterator.next();
-                if (activity.getClass().equals(cls)) {
+                if (activity != null && activity.getClass().equals(cls)) {
                     temp = activity;
                 }
             }
@@ -168,5 +195,29 @@ public class AppManager {
             }
         }
         return null;
+    }
+    
+    public void onDestroy() {
+        activityStack = new Stack<>();
+    }
+    
+    public static Stack<BaseActivity> getActivityStack() {
+        return activityStack;
+    }
+    
+    public static OnActivityStatusChangeListener getOnActivityStatusChangeListener() {
+        return onActivityStatusChangeListener;
+    }
+    
+    public static void setOnActivityStatusChangeListener(OnActivityStatusChangeListener onActivityStatusChangeListener) {
+        AppManager.onActivityStatusChangeListener = onActivityStatusChangeListener;
+    }
+    
+    public interface OnActivityStatusChangeListener {
+        void onActivityCreate(BaseActivity activity);
+        
+        void onActivityDestroy(BaseActivity activity);
+        
+        void onAllActivityClose();
     }
 }

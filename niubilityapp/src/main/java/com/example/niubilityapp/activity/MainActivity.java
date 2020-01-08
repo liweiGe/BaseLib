@@ -19,10 +19,10 @@ import com.example.niubilityapp.live_TV.LiveUrl;
 import com.example.niubilityapp.live_TV.VideoBean;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.kongzue.baseframework.base.BaseActivity;
+import com.kongzue.baseframework.BaseActivity;
 import com.kongzue.baseframework.interfaces.DarkStatusBarTheme;
 import com.kongzue.baseframework.interfaces.Layout;
-import com.kongzue.baseframework.util.activityParam.JumpParameter;
+import com.kongzue.baseframework.other.JumpParameter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.kongzue.baseframework.interfaces;
 
-import com.kongzue.baseframework.base.BaseActivity;
+import com.kongzue.baseframework.BaseActivity;
 
 /**
  * Author: @Kongzue

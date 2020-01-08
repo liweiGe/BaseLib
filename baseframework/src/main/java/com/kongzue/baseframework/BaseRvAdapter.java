@@ -1,4 +1,4 @@
-package com.kongzue.baseframework.base;
+package com.kongzue.baseframework;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;

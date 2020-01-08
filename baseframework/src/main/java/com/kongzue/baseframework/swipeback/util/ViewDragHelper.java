@@ -300,7 +300,7 @@ public class ViewDragHelper {
          * </p>
          * <p>
          * If this method returns true, a call to
-         * {@link #onViewCaptured(android.view.View, int)} will follow if the
+         * {@link #onViewCaptured(View, int)} will follow if the
          * capture is successful.
          * </p>
          *
@@ -344,7 +344,8 @@ public class ViewDragHelper {
     /**
      * Interpolator defining the animation curve for mScroller
      */
-    private static final Interpolator sInterpolator = new Interpolator() {
+    private static final Interpolator INTERPOLATOR = new Interpolator() {
+        @Override
         public float getInterpolation(float t) {
             t -= 1.0f;
             return t * t * t * t * t + 1.0f;
@@ -352,6 +353,7 @@ public class ViewDragHelper {
     };
     
     private final Runnable mSetIdleRunnable = new Runnable() {
+        @Override
         public void run() {
             setDragState(STATE_IDLE);
         }
@@ -410,7 +412,7 @@ public class ViewDragHelper {
         mTouchSlop = vc.getScaledTouchSlop();
         mMaxVelocity = vc.getScaledMaximumFlingVelocity();
         mMinVelocity = vc.getScaledMinimumFlingVelocity();
-        mScroller = ScrollerCompat.create(context, sInterpolator);
+        mScroller = ScrollerCompat.create(context, INTERPOLATOR);
     }
     
     /**
@@ -473,9 +475,9 @@ public class ViewDragHelper {
     /**
      * Enable edge tracking for the selected edges of the parent view. The
      * callback's
-     * {@link  com.kongzue.baseframework.swipeback.util.ViewDragHelper.Callback#onEdgeTouched(int, int)}
+     * {@link  com.kongzue.baseframework.util.swipeback.util.ViewDragHelper.Callback#onEdgeTouched(int, int)}
      * and
-     * {@link  com.kongzue.baseframework.swipeback.util.ViewDragHelper.Callback#onEdgeDragStarted(int, int)}
+     * {@link  com.kongzue.baseframework.util.swipeback.util.ViewDragHelper.Callback#onEdgeDragStarted(int, int)}
      * methods will only be invoked for edges for which edge tracking has been
      * enabled.
      *
@@ -515,7 +517,7 @@ public class ViewDragHelper {
     /**
      * Capture a specific child view for dragging within the parent. The
      * callback will be notified but
-     * {@link  com.kongzue.baseframework.swipeback.util.ViewDragHelper.Callback#tryCaptureView(android.view.View, int)}
+     * {@link  com.kongzue.baseframework.util.swipeback.util.ViewDragHelper.Callback#tryCaptureView(View, int)}
      * will not be asked permission to capture this view.
      *
      * @param childView       Child view to capture
@@ -560,7 +562,7 @@ public class ViewDragHelper {
     
     /**
      * The result of a call to this method is equivalent to
-     * {@link #processTouchEvent(android.view.MotionEvent)} receiving an
+     * {@link #processTouchEvent(MotionEvent)} receiving an
      * ACTION_CANCEL event.
      */
     public void cancel() {
@@ -724,10 +726,12 @@ public class ViewDragHelper {
      */
     private int clampMag(int value, int absMin, int absMax) {
         final int absValue = Math.abs(value);
-        if (absValue < absMin)
+        if (absValue < absMin) {
             return 0;
-        if (absValue > absMax)
+        }
+        if (absValue > absMax) {
             return value > 0 ? absMax : -absMax;
+        }
         return value;
     }
     
@@ -743,10 +747,12 @@ public class ViewDragHelper {
      */
     private float clampMag(float value, float absMin, float absMax) {
         final float absValue = Math.abs(value);
-        if (absValue < absMin)
+        if (absValue < absMin) {
             return 0;
-        if (absValue > absMax)
+        }
+        if (absValue > absMax) {
             return value > 0 ? absMax : -absMax;
+        }
         return value;
     }
     
@@ -787,7 +793,7 @@ public class ViewDragHelper {
      *
      * @param deferCallbacks true if state callbacks should be deferred via
      *                       posted message. Set this to true if you are calling this
-     *                       method from {@link android.view.View#computeScroll()} or
+     *                       method from {@link View#computeScroll()} or
      *                       similar methods invoked as part of layout or drawing.
      * @return true if settle is still in progress
      */
@@ -930,8 +936,8 @@ public class ViewDragHelper {
      * (to the best of the ViewDragHelper's knowledge).
      * <p>
      * The state used to report this information is populated by the methods
-     * {@link #shouldInterceptTouchEvent(android.view.MotionEvent)} or
-     * {@link #processTouchEvent(android.view.MotionEvent)}. If one of these
+     * {@link #shouldInterceptTouchEvent(MotionEvent)} or
+     * {@link #processTouchEvent(MotionEvent)}. If one of these
      * methods has not been called for all relevant MotionEvents to track, the
      * information reported by this method may be stale or incorrect.
      * </p>
@@ -1363,8 +1369,8 @@ public class ViewDragHelper {
      * required slop threshold.
      * <p>
      * This depends on internal state populated by
-     * {@link #shouldInterceptTouchEvent(android.view.MotionEvent)} or
-     * {@link #processTouchEvent(android.view.MotionEvent)}. You should only
+     * {@link #shouldInterceptTouchEvent(MotionEvent)} or
+     * {@link #processTouchEvent(MotionEvent)}. You should only
      * rely on the results of this method after all currently available touch
      * data has been provided to one of these two methods.
      * </p>
@@ -1389,8 +1395,8 @@ public class ViewDragHelper {
      * the required slop threshold.
      * <p>
      * This depends on internal state populated by
-     * {@link #shouldInterceptTouchEvent(android.view.MotionEvent)} or
-     * {@link #processTouchEvent(android.view.MotionEvent)}. You should only
+     * {@link #shouldInterceptTouchEvent(MotionEvent)} or
+     * {@link #processTouchEvent(MotionEvent)}. You should only
      * rely on the results of this method after all currently available touch
      * data has been provided to one of these two methods.
      * </p>
@@ -1528,7 +1534,7 @@ public class ViewDragHelper {
     /**
      * Find the topmost child under the given point within the parent view's
      * coordinate system. The child order is determined using
-     * {@link  com.kongzue.baseframework.swipeback.util.ViewDragHelper.Callback#getOrderedChildIndex(int)}
+     * {@link  com.kongzue.baseframework.util.swipeback.util.ViewDragHelper.Callback#getOrderedChildIndex(int)}
      * .
      *
      * @param x X position to test in the parent's coordinate system
@@ -1550,14 +1556,18 @@ public class ViewDragHelper {
     private int getEdgeTouched(int x, int y) {
         int result = 0;
         
-        if (x < mParentView.getLeft() + mEdgeSize)
+        if (x < mParentView.getLeft() + mEdgeSize) {
             result = EDGE_LEFT;
-        if (y < mParentView.getTop() + mEdgeSize)
+        }
+        if (y < mParentView.getTop() + mEdgeSize) {
             result = EDGE_TOP;
-        if (x > mParentView.getRight() - mEdgeSize)
+        }
+        if (x > mParentView.getRight() - mEdgeSize) {
             result = EDGE_RIGHT;
-        if (y > mParentView.getBottom() - mEdgeSize)
+        }
+        if (y > mParentView.getBottom() - mEdgeSize) {
             result = EDGE_BOTTOM;
+        }
         
         return result;
     }

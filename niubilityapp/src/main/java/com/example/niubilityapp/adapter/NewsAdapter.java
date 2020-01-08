@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.niubilityapp.R;
 import com.example.niubilityapp.model.JokeBean;
-import com.kongzue.baseframework.base.BaseRvAdapter;
+import com.kongzue.baseframework.BaseRvAdapter;
 
 public class NewsAdapter extends BaseRvAdapter<JokeBean> {
 

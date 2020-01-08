@@ -3,7 +3,7 @@ package com.example.niubilityapp.fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.niubilityapp.R;
-import com.kongzue.baseframework.base.BaseFragment;
+import com.kongzue.baseframework.BaseFragment;
 import com.kongzue.baseframework.interfaces.Layout;
 
 @Layout(R.layout.activity_recycler_view)

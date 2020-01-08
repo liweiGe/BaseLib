@@ -38,7 +38,7 @@ public class SwipeBackUtil {
      * Convert a translucent themed Activity
      * {@link android.R.attr#windowIsTranslucent} back from opaque to
      * translucent following a call to
-     * {@link #convertActivityFromTranslucent(android.app.Activity)} .
+     * {@link #convertActivityFromTranslucent(Activity)} .
      * <p>
      * Calling this allows the Activity behind this one to be seen again. Once
      * all such Activities have been redrawn

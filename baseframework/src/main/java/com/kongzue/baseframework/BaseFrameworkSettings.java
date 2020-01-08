@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import com.kongzue.baseframework.interfaces.OnBugReportListener;
+import com.kongzue.baseframework.other.Preferences;
 import com.kongzue.baseframework.util.DebugLogG;
-import com.kongzue.baseframework.util.Preferences;
 
 import java.io.File;
 import java.util.Locale;
@@ -38,7 +38,7 @@ public class BaseFrameworkSettings {
         String reporterFile = Preferences.getInstance().getString(context, "cache", "bugReporterFile");
         if (reporterFile != null && !reporterFile.isEmpty()) {
             onBugReportListener.onReporter(new File(reporterFile));
-            Preferences.getInstance().set(context, "cache", "bugReporterFile", "");
+            Preferences.getInstance().commit(context, "cache", "bugReporterFile", "");
         }
         
         Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
@@ -52,7 +52,9 @@ public class BaseFrameworkSettings {
     }
     
     private static void showInfo(Throwable e) {
-        if (!DEBUGMODE) return;
+        if (!DEBUGMODE) {
+            return;
+        }
         String errorInfo = DebugLogG.getExceptionInfo(e);
         String[] lines = errorInfo.split(LINE_SEPARATOR);
         for (String line : lines) {

@@ -11,11 +11,11 @@ import android.widget.FrameLayout;
 import com.example.niubilityapp.R;
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.DefaultWebClient;
-import com.kongzue.baseframework.base.BaseActivity;
+import com.kongzue.baseframework.BaseActivity;
 import com.kongzue.baseframework.interfaces.DarkStatusBarTheme;
 import com.kongzue.baseframework.interfaces.Layout;
 import com.kongzue.baseframework.interfaces.SwipeBack;
-import com.kongzue.baseframework.util.activityParam.JumpParameter;
+import com.kongzue.baseframework.other.JumpParameter;
 
 @Layout(R.layout.activity_web)
 

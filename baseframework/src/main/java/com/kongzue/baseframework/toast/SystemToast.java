@@ -5,20 +5,21 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
-import androidx.annotation.NonNull;
-import androidx.core.app.NotificationManagerCompat;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.NotificationManagerCompat;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import static com.kongzue.baseframework.base.BaseActivity.isMIUI;
+import static com.kongzue.baseframework.BaseActivity.isMIUI;
 import static com.kongzue.baseframework.toast.Toaster.isAndroidO;
 
 public class SystemToast extends BaseToast {
@@ -54,6 +55,7 @@ public class SystemToast extends BaseToast {
         return this;
     }
     
+    @Override
     public SystemToast show(int layoutResId) {
         Toaster.cancel();
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -129,7 +131,9 @@ public class SystemToast extends BaseToast {
     }
     
     private void hookToast(Toast toast) {
-        if (toast == null || Build.VERSION.SDK_INT >= 26) return;
+        if (toast == null || Build.VERSION.SDK_INT >= 26) {
+            return;
+        }
         try {
             Field sField_TN = Toast.class.getDeclaredField("mTN");
             sField_TN.setAccessible(true);
@@ -145,7 +149,9 @@ public class SystemToast extends BaseToast {
     }
     
     private void customToast(Toast toast) {
-        if (toast == null) return;
+        if (toast == null) {
+            return;
+        }
         if (contentView != null) {
             toast.setView(this.contentView);
         }
@@ -198,11 +204,16 @@ public class SystemToast extends BaseToast {
     private static Object iNotificationManagerProxy;
     
     private static void hookINotificationManager(Toast toast, @NonNull Context mContext) {
-        if (toast == null) return;
-        if (NotificationManagerCompat.from(mContext).areNotificationsEnabled() || isMIUI())
+        if (toast == null) {
             return;
+        }
+        if (NotificationManagerCompat.from(mContext).areNotificationsEnabled() || isMIUI()) {
+            return;
+        }
         if (isAndroidO()) {
-            if (iNotificationManagerProxy != null) return;//代理不为空说明之前已设置成功
+            if (iNotificationManagerProxy != null) {
+                return;//代理不为空说明之前已设置成功
+            }
             try {
                 //生成INotificationManager代理
                 Method getServiceMethod = Toast.class.getDeclaredMethod("getService");
