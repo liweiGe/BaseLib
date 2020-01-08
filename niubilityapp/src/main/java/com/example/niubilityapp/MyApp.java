@@ -1,19 +1,22 @@
 package com.example.niubilityapp;
 
-import android.app.Application;
+import android.util.Log;
 
 import com.example.niubilityapp.http.HttpApi;
 import com.facebook.stetho.Stetho;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
+import com.kongzue.baseframework.BaseActivity;
+import com.kongzue.baseframework.BaseApp;
+import com.kongzue.baseframework.BaseFrameworkSettings;
+import com.kongzue.baseframework.util.AppManager;
 import com.zhouyou.http.EasyHttp;
 import com.zhouyou.http.interceptor.CacheInterceptorOffline;
 
-public class MyApp extends Application {
+public class MyApp extends BaseApp<MyApp> {
     @Override
-    public void onCreate() {
-        super.onCreate();
+    public void init() {
         Stetho.initializeWithDefaults(this);
-  // TODO: 2019-07-05  https://blog.csdn.net/zhouy478319399/article/details/78550248 该框架的rxjava用法
+        // TODO: 2019-07-05  https://blog.csdn.net/zhouy478319399/article/details/78550248 该框架的rxjava用法
         EasyHttp.init(this);//默认初始化
         EasyHttp.getInstance().setBaseUrl(HttpApi.baseUrl)
                 .setRetryCount(1)//网络不好自动重试1次
@@ -27,5 +30,24 @@ public class MyApp extends Application {
                 .setCertificates();
 //        SmartSwipeBack.activityDoorBack(this, null);    //侧滑百叶窗样式关闭activity
 //        Vitamio.isInitialized(getApplicationContext());
+        BaseFrameworkSettings.DEBUGMODE = true;
+        BaseFrameworkSettings.BETA_PLAN = true;
+
+        AppManager.setOnActivityStatusChangeListener(new AppManager.OnActivityStatusChangeListener() {
+            @Override
+            public void onActivityCreate(BaseActivity activity) {
+
+            }
+
+            @Override
+            public void onActivityDestroy(BaseActivity activity) {
+
+            }
+
+            @Override
+            public void onAllActivityClose() {
+                Log.e(">>>", "onAllActivityClose ");
+            }
+        });
     }
 }

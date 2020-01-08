@@ -1,1 +1,1 @@
-include ':niubilityapp', ':rxeasyhttp', ':baseframework', ':commom_view'
+include ':niubilityapp', ':rxeasyhttp', ':baseframework', ':commom_view', ':swipe_back'

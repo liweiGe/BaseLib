@@ -20,7 +20,6 @@ import com.example.niubilityapp.live_TV.VideoBean;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.kongzue.baseframework.BaseActivity;
-import com.kongzue.baseframework.interfaces.DarkStatusBarTheme;
 import com.kongzue.baseframework.interfaces.Layout;
 import com.kongzue.baseframework.other.JumpParameter;
 
@@ -28,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Layout(R.layout.activity_main)
-@DarkStatusBarTheme(true)           //开启顶部状态栏图标、文字暗色模式
 public class MainActivity extends BaseActivity {
     List<Fragment> fragments = new ArrayList<>();
     List<String> titles = new ArrayList<>();

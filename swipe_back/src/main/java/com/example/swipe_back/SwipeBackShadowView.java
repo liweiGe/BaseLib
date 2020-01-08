@@ -1,0 +1,257 @@
+package com.example.swipe_back;
+
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+
+import androidx.annotation.DrawableRes;
+import androidx.core.view.ViewCompat;
+
+import java.lang.ref.WeakReference;
+
+import static com.example.swipe_back.SwipeBackUtil.getNavigationBarHeight;
+import static com.example.swipe_back.SwipeBackUtil.getRealScreenHeight;
+
+/**
+ * 左侧阴影控件
+ *
+ * @author Vea
+ * @version 0.0.9
+ * @since 2019-1
+ */
+class SwipeBackShadowView extends FrameLayout {
+    private static final String TAG = SwipeBackShadowView.class.getSimpleName();
+    private static final float WE_CHAT_STYLE_MAX_OFFSET = 0.75f;
+    private Activity mActivity;
+    private WeakReference<Activity> mPreActivity;
+    private ViewGroup mPreDecorView;
+    private View mPreContentView;
+    private ImageView mPreImageView;
+    private View mShadowView;
+    /**
+     * 是否显示滑动返回的阴影效果
+     */
+    private boolean mIsNeedShowShadow = true;
+    /**
+     * 阴影资源 id
+     */
+    private int mShadowResId = R.drawable.maven_swipeback_shadow;
+    /**
+     * 阴影区域的透明度是否根据滑动的距离渐变
+     */
+    private boolean mIsShadowAlphaGradient = true;
+    /**
+     * 是否是微信滑动返回样式
+     */
+    private boolean mIsWeChatStyle = true;
+
+    SwipeBackShadowView(Activity activity) {
+        super(activity);
+        mActivity = activity;
+        updateShadow();
+    }
+
+    /**
+     * 设置是否显示滑动返回的阴影效果。默认值为 true
+     */
+    void setIsNeedShowShadow(boolean isNeedShowShadow) {
+        mIsNeedShowShadow = isNeedShowShadow;
+        updateShadow();
+    }
+
+    /**
+     * 设置阴影资源 id。默认值为 R.drawable.maven_swipeback_shadow
+     */
+    void setShadowResId(@DrawableRes int shadowResId) {
+        mShadowResId = shadowResId;
+        updateShadow();
+    }
+
+    /**
+     * 设置阴影区域的透明度是否根据滑动的距离渐变。默认值为 true
+     */
+    void setIsShadowAlphaGradient(boolean isShadowAlphaGradient) {
+        mIsShadowAlphaGradient = isShadowAlphaGradient;
+    }
+
+    /**
+     * 设置是否是微信滑动返回样式。默认值为 true
+     */
+    void setIsWeChatStyle(boolean isWeChatStyle) {
+        mIsWeChatStyle = isWeChatStyle;
+    }
+
+    private void updateShadow() {
+        if (mIsNeedShowShadow) {
+            if (mShadowView == null) {
+                mShadowView = new View(getContext());
+                addView(mShadowView, getChildCount(), new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            }
+            mShadowView.setBackgroundResource(mShadowResId);
+        } else {
+            if (mShadowView != null) {
+                removeView(mShadowView);
+            }
+        }
+    }
+
+    void bindPreActivity() {
+        if (mPreActivity == null) {
+            Activity preActivity = SwipeBackManager.getInstance().getPenultimateActivity(mActivity);
+            if (preActivity != null) {
+                mPreActivity = new WeakReference<>(preActivity);
+                mPreDecorView = (ViewGroup) preActivity.getWindow().getDecorView();
+                for (int i = 0; i < mPreDecorView.getChildCount(); i++) {
+                    if (mPreDecorView.getChildAt(i) instanceof SwipeBackLayout) {
+                        mPreContentView = mPreDecorView.getChildAt(i);
+                        mPreDecorView.removeView(mPreContentView);
+                        addView(mPreContentView, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+                    }
+                }
+            }
+        }
+    }
+
+    void unBindPreActivity(boolean isNeedAddImageView) {
+        if (mPreActivity == null) {
+            return;
+        }
+
+        Activity activity = mPreActivity.get();
+        if (activity == null || activity.isFinishing()) {
+            return;
+        }
+
+        if (mPreDecorView != null && mPreContentView != null) {
+            if (isNeedAddImageView && mPreImageView == null && containsProblemView((ViewGroup) mPreContentView)) {
+                mPreImageView = new ImageView(mActivity);
+                mPreImageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                mPreImageView.setImageBitmap(getBitmap(mPreContentView));
+                addView(mPreImageView, 0, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+            }
+
+            removeView(mPreContentView);
+
+            ViewGroup.LayoutParams lp = null;
+            if (!(mPreContentView instanceof SwipeBackLayout)) {
+                int width = mPreDecorView.getWidth();
+                int height = mPreDecorView.getHeight() - getNavigationBarHeight(activity);
+                if (!SwipeBackUtil.isPortrait(activity)) {
+                    width = mPreDecorView.getWidth() - getNavigationBarHeight(activity);
+                    height = mPreDecorView.getHeight();
+                }
+                if (mPreDecorView instanceof FrameLayout) {
+                    lp = new LayoutParams(width, height);
+                } else if (mPreDecorView instanceof LinearLayout) {
+                    lp = new LinearLayout.LayoutParams(width, height);
+                } else if (mPreDecorView instanceof RelativeLayout) {
+                    lp = new RelativeLayout.LayoutParams(width, height);
+                }
+            }
+            if (lp == null) {
+                mPreDecorView.addView(mPreContentView, 0);
+            } else {
+                mPreDecorView.addView(mPreContentView, 0, lp);
+            }
+
+            mPreContentView = null;
+            mPreActivity.clear();
+            mPreActivity = null;
+        }
+    }
+
+    @Override
+    protected void dispatchDraw(final Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (mPreImageView != null) {
+            return;
+        }
+        // add 和 remove 方式时，滑动返回结束后的最后一帧通过 draw 来实现，避免抖动
+        if (mPreContentView == null && mPreDecorView != null) {
+            mPreDecorView.draw(canvas);
+        }
+    }
+
+    private Bitmap getBitmap(View view) {
+        view.setDrawingCacheEnabled(true);
+        view.buildDrawingCache();
+        Bitmap bitmap = Bitmap.createBitmap(view.getDrawingCache(), 0, 0,
+                SwipeBackUtil.getRealScreenWidth(mActivity),
+                getRealScreenHeight(mActivity) - getNavigationBarHeight(mActivity));
+        view.destroyDrawingCache();
+        return bitmap;
+    }
+
+    /**
+     * 该 ViewGroup 中是否包含导致多次 draw 后应用崩溃的 View
+     */
+    private boolean containsProblemView(ViewGroup viewGroup) {
+        int childCount = viewGroup.getChildCount();
+        View childView;
+        for (int i = 0; i < childCount; i++) {
+            childView = viewGroup.getChildAt(i);
+            if (SwipeBackManager.getInstance().isProblemView(childView)) {
+                return true;
+            } else if (childView instanceof ViewGroup) {
+                if (containsProblemView((ViewGroup) childView)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    void setShadowAlpha(float alpha) {
+        if (mIsNeedShowShadow && mIsShadowAlphaGradient) {
+            mShadowView.setAlpha(alpha);
+        }
+    }
+
+    void onPanelSlide(float slideOffset) {
+        if (mPreContentView == null) return;
+        if (mIsWeChatStyle) { // 微信滑动返回样式的情况
+            ViewCompat.setTranslationX(mPreContentView, (mPreContentView.getMeasuredWidth() * WE_CHAT_STYLE_MAX_OFFSET) * (1 - slideOffset));
+        } else { // 非微信滑动返回样式的情况
+            ViewCompat.setTranslationX(mPreContentView, mPreContentView.getMeasuredWidth() * (1 - slideOffset));
+        }
+    }
+
+    void onPanelClosed() {
+        if (mPreContentView == null) return;
+        if (mIsWeChatStyle) { // 微信滑动返回样式的情况
+            ViewCompat.setTranslationX(mPreContentView, 0);
+        } else { // 非微信滑动返回样式的情况
+            ViewCompat.setTranslationX(mPreContentView, 0);
+        }
+        unBindPreActivity(false);
+    }
+
+//    private void onPanelSlide(Activity currentActivity, float slideOffset) {
+//        try {
+//            Activity preActivity = SwipeBackManager.getInstance().getPenultimateActivity(currentActivity);
+//            if (preActivity != null) {
+//                View decorView = preActivity.getWindow().getDecorView();
+//                ViewCompat.setTranslationX(decorView, -decorView.getMeasuredWidth() * (1 - WE_CHAT_STYLE_MAX_OFFSET) * (1 - slideOffset));
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+//    private void onPanelClosed(Activity currentActivity) {
+//        try {
+//            Activity preActivity = SwipeBackManager.getInstance().getPenultimateActivity(currentActivity);
+//            if (preActivity != null) {
+//                View decorView = preActivity.getWindow().getDecorView();
+//                ViewCompat.setTranslationX(decorView, 0);
+//            }
+//        } catch (Exception e) {
+//        }
+//    }
+}
