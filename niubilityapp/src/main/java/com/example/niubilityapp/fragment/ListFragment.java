@@ -1,5 +1,6 @@
 package com.example.niubilityapp.fragment;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.recyclerview.widget.RecyclerView;

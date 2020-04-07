@@ -86,6 +86,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 
+import dalvik.system.DexClassLoader;
+
 import static com.kongzue.baseframework.BaseFrameworkSettings.BETA_PLAN;
 import static com.kongzue.baseframework.BaseFrameworkSettings.DEBUGMODE;
 
