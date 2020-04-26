@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.niubilityapp.R;
-import com.example.niubilityapp.databinding.ActivityMainBinding;
 import com.example.niubilityapp.fragment.CCTVFragment;
 import com.example.niubilityapp.fragment.CityTvFragment;
 import com.example.niubilityapp.fragment.OtherTvFragment;
