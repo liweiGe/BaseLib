@@ -1,4 +1,4 @@
-package com.kongzue.baseframework;
+package com.kongzue.baseframework.best;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

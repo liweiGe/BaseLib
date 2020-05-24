@@ -1,4 +1,4 @@
-package com.kongzue.baseframework;
+package com.kongzue.baseframework.best;
 
 /**
  * <p>作者：王志强<p>
