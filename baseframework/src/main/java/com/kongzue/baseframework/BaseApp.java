@@ -24,7 +24,7 @@ import com.kongzue.baseframework.interfaces.OnSDKInitializedCallBack;
 import com.kongzue.baseframework.other.JsonFormat;
 import com.kongzue.baseframework.toast.Toaster;
 import com.kongzue.baseframework.util.AppManager;
-import com.kongzue.baseframework.util.DebugLogG;
+import com.kongzue.baseframework.crash.DebugLogG;
 
 import java.lang.reflect.Field;
 

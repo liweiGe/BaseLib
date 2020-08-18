@@ -1,4 +1,4 @@
-package com.kongzue.baseframework.interfaces;
+package com.kongzue.baseframework.crash;
 
 import java.io.File;
 
@@ -10,5 +10,5 @@ import java.io.File;
  * CreateTime: 2018/9/30 15:47
  */
 public interface OnBugReportListener {
-    void onReporter(File file);
+    boolean onCrash(Exception e,File crashLogFile);
 }

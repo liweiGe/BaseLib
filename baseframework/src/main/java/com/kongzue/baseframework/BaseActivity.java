@@ -66,7 +66,7 @@ import com.kongzue.baseframework.swipeback.util.SwipeBackLayout;
 import com.kongzue.baseframework.swipeback.util.SwipeBackUtil;
 import com.kongzue.baseframework.toast.Toaster;
 import com.kongzue.baseframework.util.AppManager;
-import com.kongzue.baseframework.util.DebugLogG;
+import com.kongzue.baseframework.crash.DebugLogG;
 import com.kongzue.baseframework.util.FragmentChangeUtil;
 import com.kongzue.baseframework.util.LanguageUtil;
 import com.kongzue.baseframework.util.ParameterCache;
@@ -85,8 +85,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
-
-import dalvik.system.DexClassLoader;
 
 import static com.kongzue.baseframework.BaseFrameworkSettings.BETA_PLAN;
 import static com.kongzue.baseframework.BaseFrameworkSettings.DEBUGMODE;

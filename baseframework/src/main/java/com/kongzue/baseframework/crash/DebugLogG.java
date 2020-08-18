@@ -1,4 +1,4 @@
-package com.kongzue.baseframework.util;
+package com.kongzue.baseframework.crash;
 
 import android.content.Context;
 
@@ -19,10 +19,10 @@ import java.io.StringWriter;
  * CreateTime: 2018/9/30 03:38
  */
 public class DebugLogG {
-    
+
     private static File logFile;
     private static FileWriter logWriter;
-    
+
     public static void LogG(Context context, String s) {
         try {
             if (logFile == null) {
@@ -31,7 +31,7 @@ public class DebugLogG {
             logWriter = new FileWriter(logFile, true);
             logWriter.write(s + "\n");
         } catch (Exception e) {
-        
+
         } finally {
             try {
                 logWriter.close();
@@ -39,12 +39,17 @@ public class DebugLogG {
             }
         }
     }
-    
-    public static void createWriter(Context context) {
+
+    /**
+     * 获取的日志文件为 .bfl 格式的文本文件，可通过任意文本编辑器打开
+     *
+     * @param context
+     */
+    public static File createWriter(Context context) {
         try {
             logFile = new File(context.getExternalCacheDir(), System.currentTimeMillis() + ".bfl");
             logWriter = new FileWriter(logFile, true);
-            
+
             logWriter.write("App.Start===============" +
                     "\npackageName>>>" + context.getPackageName() +
                     "\nappVer>>>" + context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName + "(" + context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode + ")" +
@@ -56,18 +61,20 @@ public class DebugLogG {
             );
             logWriter.close();
         } catch (Exception e) {
-        
+
         }
+        return logFile;
     }
-    
-    public static void catchException(Context context, Thread t, Throwable e) {
+
+    public static File catchException(Context context, Throwable e) {
+        File writer = null;
         if (logFile == null) {
-            createWriter(context);
+            writer = createWriter(context);
         }
-        Preferences.getInstance().commit(context, "cache", "bugReporterFile", logFile.getAbsolutePath());
         LogG(context, "\nError>>>\n" + getExceptionInfo(e));
+        return writer;
     }
-    
+
     public static String getExceptionInfo(Throwable e) {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw, true);
