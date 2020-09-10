@@ -1,3 +1,4 @@
 include ':niubilityapp', ':rxeasyhttp', ':baseframework', ':commom_view', ':swipe_back'
 include ':transferee'
 include ':scan'
+include ':skin_demo'

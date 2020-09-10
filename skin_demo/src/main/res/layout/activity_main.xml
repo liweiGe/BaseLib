@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical"
+    app:isSupport="true"
+    tools:context=".ui.MainActivity">
+
+    <!--TODO: 关键技术点2 isSupport=true标识当前控件支持换肤-->
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:gravity="center_horizontal"
+        android:text="Hello World!"
+        android:textColor="@color/colorAccent"
+        app:isSupport="true" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="换肤"
+        android:textColor="@color/colorPrimaryDark"
+        app:isSupport="true" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="To OtherActivity" />
+
+    <!--TODO: 关键技术点2 可以支持自定义View -->
+    <com.cxz.skinsample.widget.ZeroView
+        android:id="@+id/zeroView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:background="@drawable/bg2"
+        app:isSupport="true" />
+
+</LinearLayout>
